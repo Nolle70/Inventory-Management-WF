@@ -256,7 +256,7 @@
             this.searchBox.DisabledState.Parent = this.searchBox;
             this.searchBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.searchBox.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.searchBox.FocusedState.BorderColor = System.Drawing.Color.Maroon;
+            this.searchBox.FocusedState.BorderColor = System.Drawing.Color.RosyBrown;
             this.searchBox.FocusedState.Parent = this.searchBox;
             this.searchBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBox.ForeColor = System.Drawing.Color.RosyBrown;
@@ -264,6 +264,7 @@
             this.searchBox.HoverState.Parent = this.searchBox;
             this.searchBox.IconRight = ((System.Drawing.Image)(resources.GetObject("searchBox.IconRight")));
             this.searchBox.Location = new System.Drawing.Point(740, 25);
+            this.searchBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.searchBox.Name = "searchBox";
             this.searchBox.PasswordChar = '\0';
             this.searchBox.PlaceholderForeColor = System.Drawing.Color.RosyBrown;
