@@ -8,18 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using Inventory_App;
 
 namespace Bunfiu_TEst
 {
     public partial class Form1 : Form
     {
+        
         public Form1()
         {
             InitializeComponent();
             UserControls.UC_Home uc = new UserControls.UC_Home();
-            addUserControl(uc);
-            
-
+            addUserControl(uc);          
         }
 
         private void addUserControl(UserControl userControl)
@@ -51,6 +51,13 @@ namespace Bunfiu_TEst
             UserControls.UC_Orders uc = new UserControls.UC_Orders();
             addUserControl(uc);
             topPanel.BackColor = Color.Green;
+        }
+
+        private void customerBtn_Click(object sender, EventArgs e)
+        {
+            Inventory_App.UserControls.UC_Customers uc = new Inventory_App.UserControls.UC_Customers();
+            addUserControl(uc);
+            topPanel.BackColor = Color.Yellow;
         }
     }
 }
