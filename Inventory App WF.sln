@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunfiu TEst", "Bunfiu TEst\Bunfiu TEst.csproj", "{78E78D87-C3B1-4818-998F-354D7D2D3D2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory App", "Bunfiu TEst\Inventory App.csproj", "{78E78D87-C3B1-4818-998F-354D7D2D3D2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
