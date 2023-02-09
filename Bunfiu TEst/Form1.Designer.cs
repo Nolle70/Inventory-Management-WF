@@ -30,16 +30,21 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.topPanel = new System.Windows.Forms.Panel();
+            this.controlBox = new System.Windows.Forms.Panel();
+            this.minimizeBtn = new Guna.UI2.WinForms.Guna2Button();
+            this.maximizeBtn = new Guna.UI2.WinForms.Guna2Button();
+            this.kryssBtn = new Guna.UI2.WinForms.Guna2Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
+            this.viewOrdersBtn = new Guna.UI2.WinForms.Guna2Button();
             this.customerBtn = new Guna.UI2.WinForms.Guna2Button();
             this.ordersBtn = new Guna.UI2.WinForms.Guna2Button();
             this.inventoryBtn = new Guna.UI2.WinForms.Guna2Button();
             this.homeBtn = new Guna.UI2.WinForms.Guna2Button();
             this.panelContainer = new System.Windows.Forms.Panel();
             this.topPanel.SuspendLayout();
+            this.controlBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -47,6 +52,7 @@
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.Color.Blue;
+            this.topPanel.Controls.Add(this.controlBox);
             this.topPanel.Controls.Add(this.label1);
             this.topPanel.Controls.Add(this.pictureBox1);
             this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -54,6 +60,75 @@
             this.topPanel.Name = "topPanel";
             this.topPanel.Size = new System.Drawing.Size(1118, 72);
             this.topPanel.TabIndex = 0;
+            this.topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseDown);
+            // 
+            // controlBox
+            // 
+            this.controlBox.Controls.Add(this.minimizeBtn);
+            this.controlBox.Controls.Add(this.maximizeBtn);
+            this.controlBox.Controls.Add(this.kryssBtn);
+            this.controlBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.controlBox.Location = new System.Drawing.Point(987, 0);
+            this.controlBox.Name = "controlBox";
+            this.controlBox.Size = new System.Drawing.Size(131, 72);
+            this.controlBox.TabIndex = 0;
+            // 
+            // minimizeBtn
+            // 
+            this.minimizeBtn.AutoRoundedCorners = true;
+            this.minimizeBtn.BorderRadius = 12;
+            this.minimizeBtn.CheckedState.Parent = this.minimizeBtn;
+            this.minimizeBtn.CustomImages.Parent = this.minimizeBtn;
+            this.minimizeBtn.FillColor = System.Drawing.Color.Yellow;
+            this.minimizeBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.minimizeBtn.ForeColor = System.Drawing.Color.White;
+            this.minimizeBtn.HoverState.Parent = this.minimizeBtn;
+            this.minimizeBtn.Image = ((System.Drawing.Image)(resources.GetObject("minimizeBtn.Image")));
+            this.minimizeBtn.ImageSize = new System.Drawing.Size(28, 28);
+            this.minimizeBtn.Location = new System.Drawing.Point(19, 21);
+            this.minimizeBtn.Name = "minimizeBtn";
+            this.minimizeBtn.ShadowDecoration.Parent = this.minimizeBtn;
+            this.minimizeBtn.Size = new System.Drawing.Size(27, 27);
+            this.minimizeBtn.TabIndex = 2;
+            this.minimizeBtn.Click += new System.EventHandler(this.minimizeBtn_Click);
+            // 
+            // maximizeBtn
+            // 
+            this.maximizeBtn.AutoRoundedCorners = true;
+            this.maximizeBtn.BorderRadius = 13;
+            this.maximizeBtn.CheckedState.Parent = this.maximizeBtn;
+            this.maximizeBtn.CustomImages.Parent = this.maximizeBtn;
+            this.maximizeBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.maximizeBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.maximizeBtn.ForeColor = System.Drawing.Color.White;
+            this.maximizeBtn.HoverState.Parent = this.maximizeBtn;
+            this.maximizeBtn.Image = ((System.Drawing.Image)(resources.GetObject("maximizeBtn.Image")));
+            this.maximizeBtn.ImageSize = new System.Drawing.Size(26, 26);
+            this.maximizeBtn.Location = new System.Drawing.Point(59, 21);
+            this.maximizeBtn.Name = "maximizeBtn";
+            this.maximizeBtn.ShadowDecoration.Parent = this.maximizeBtn;
+            this.maximizeBtn.Size = new System.Drawing.Size(28, 28);
+            this.maximizeBtn.TabIndex = 1;
+            this.maximizeBtn.Click += new System.EventHandler(this.maximizeBtn_Click);
+            // 
+            // kryssBtn
+            // 
+            this.kryssBtn.AutoRoundedCorners = true;
+            this.kryssBtn.BorderRadius = 12;
+            this.kryssBtn.CheckedState.Parent = this.kryssBtn;
+            this.kryssBtn.CustomImages.Parent = this.kryssBtn;
+            this.kryssBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.kryssBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.kryssBtn.ForeColor = System.Drawing.Color.White;
+            this.kryssBtn.HoverState.Parent = this.kryssBtn;
+            this.kryssBtn.Image = ((System.Drawing.Image)(resources.GetObject("kryssBtn.Image")));
+            this.kryssBtn.ImageSize = new System.Drawing.Size(27, 27);
+            this.kryssBtn.Location = new System.Drawing.Point(100, 21);
+            this.kryssBtn.Name = "kryssBtn";
+            this.kryssBtn.ShadowDecoration.Parent = this.kryssBtn;
+            this.kryssBtn.Size = new System.Drawing.Size(26, 26);
+            this.kryssBtn.TabIndex = 0;
+            this.kryssBtn.Click += new System.EventHandler(this.kryssBtn_Click_1);
             // 
             // label1
             // 
@@ -75,11 +150,12 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.guna2Button4);
+            this.panel2.Controls.Add(this.viewOrdersBtn);
             this.panel2.Controls.Add(this.customerBtn);
             this.panel2.Controls.Add(this.ordersBtn);
             this.panel2.Controls.Add(this.inventoryBtn);
@@ -90,26 +166,30 @@
             this.panel2.Size = new System.Drawing.Size(176, 560);
             this.panel2.TabIndex = 1;
             // 
-            // guna2Button4
+            // viewOrdersBtn
             // 
-            this.guna2Button4.Animated = true;
-            this.guna2Button4.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.guna2Button4.CheckedState.CustomBorderColor = System.Drawing.Color.Red;
-            this.guna2Button4.CheckedState.Parent = this.guna2Button4;
-            this.guna2Button4.CustomBorderThickness = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.guna2Button4.CustomImages.Parent = this.guna2Button4;
-            this.guna2Button4.FillColor = System.Drawing.Color.White;
-            this.guna2Button4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button4.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button4.HoverState.CustomBorderColor = System.Drawing.Color.Red;
-            this.guna2Button4.HoverState.Parent = this.guna2Button4;
-            this.guna2Button4.Location = new System.Drawing.Point(0, 390);
-            this.guna2Button4.Name = "guna2Button4";
-            this.guna2Button4.ShadowDecoration.Parent = this.guna2Button4;
-            this.guna2Button4.Size = new System.Drawing.Size(176, 45);
-            this.guna2Button4.TabIndex = 4;
-            this.guna2Button4.Text = "Home";
-            this.guna2Button4.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+            this.viewOrdersBtn.Animated = true;
+            this.viewOrdersBtn.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.viewOrdersBtn.CheckedState.CustomBorderColor = System.Drawing.Color.Cyan;
+            this.viewOrdersBtn.CheckedState.Parent = this.viewOrdersBtn;
+            this.viewOrdersBtn.CustomBorderThickness = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.viewOrdersBtn.CustomImages.Parent = this.viewOrdersBtn;
+            this.viewOrdersBtn.FillColor = System.Drawing.Color.White;
+            this.viewOrdersBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewOrdersBtn.ForeColor = System.Drawing.Color.Black;
+            this.viewOrdersBtn.HoverState.CustomBorderColor = System.Drawing.Color.Cyan;
+            this.viewOrdersBtn.HoverState.Parent = this.viewOrdersBtn;
+            this.viewOrdersBtn.Image = ((System.Drawing.Image)(resources.GetObject("viewOrdersBtn.Image")));
+            this.viewOrdersBtn.ImageOffset = new System.Drawing.Point(-2, 0);
+            this.viewOrdersBtn.ImageSize = new System.Drawing.Size(35, 35);
+            this.viewOrdersBtn.Location = new System.Drawing.Point(0, 390);
+            this.viewOrdersBtn.Name = "viewOrdersBtn";
+            this.viewOrdersBtn.ShadowDecoration.Parent = this.viewOrdersBtn;
+            this.viewOrdersBtn.Size = new System.Drawing.Size(176, 45);
+            this.viewOrdersBtn.TabIndex = 4;
+            this.viewOrdersBtn.Text = "View Orders";
+            this.viewOrdersBtn.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+            this.viewOrdersBtn.Click += new System.EventHandler(this.viewOrdersBtn_Click);
             // 
             // customerBtn
             // 
@@ -124,6 +204,9 @@
             this.customerBtn.ForeColor = System.Drawing.Color.Black;
             this.customerBtn.HoverState.CustomBorderColor = System.Drawing.Color.Yellow;
             this.customerBtn.HoverState.Parent = this.customerBtn;
+            this.customerBtn.Image = ((System.Drawing.Image)(resources.GetObject("customerBtn.Image")));
+            this.customerBtn.ImageOffset = new System.Drawing.Point(-5, 0);
+            this.customerBtn.ImageSize = new System.Drawing.Size(35, 35);
             this.customerBtn.Location = new System.Drawing.Point(0, 302);
             this.customerBtn.Name = "customerBtn";
             this.customerBtn.ShadowDecoration.Parent = this.customerBtn;
@@ -146,12 +229,15 @@
             this.ordersBtn.ForeColor = System.Drawing.Color.Black;
             this.ordersBtn.HoverState.CustomBorderColor = System.Drawing.Color.Green;
             this.ordersBtn.HoverState.Parent = this.ordersBtn;
+            this.ordersBtn.Image = ((System.Drawing.Image)(resources.GetObject("ordersBtn.Image")));
+            this.ordersBtn.ImageOffset = new System.Drawing.Point(-5, 0);
+            this.ordersBtn.ImageSize = new System.Drawing.Size(35, 35);
             this.ordersBtn.Location = new System.Drawing.Point(0, 210);
             this.ordersBtn.Name = "ordersBtn";
             this.ordersBtn.ShadowDecoration.Parent = this.ordersBtn;
             this.ordersBtn.Size = new System.Drawing.Size(176, 45);
             this.ordersBtn.TabIndex = 2;
-            this.ordersBtn.Text = "Orders";
+            this.ordersBtn.Text = "Add Order";
             this.ordersBtn.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
             this.ordersBtn.Click += new System.EventHandler(this.ordersBtn_Click);
             // 
@@ -168,6 +254,9 @@
             this.inventoryBtn.ForeColor = System.Drawing.Color.Black;
             this.inventoryBtn.HoverState.CustomBorderColor = System.Drawing.Color.Red;
             this.inventoryBtn.HoverState.Parent = this.inventoryBtn;
+            this.inventoryBtn.Image = ((System.Drawing.Image)(resources.GetObject("inventoryBtn.Image")));
+            this.inventoryBtn.ImageOffset = new System.Drawing.Point(-6, 0);
+            this.inventoryBtn.ImageSize = new System.Drawing.Size(35, 35);
             this.inventoryBtn.Location = new System.Drawing.Point(0, 130);
             this.inventoryBtn.Name = "inventoryBtn";
             this.inventoryBtn.ShadowDecoration.Parent = this.inventoryBtn;
@@ -192,6 +281,9 @@
             this.homeBtn.ForeColor = System.Drawing.Color.Black;
             this.homeBtn.HoverState.CustomBorderColor = System.Drawing.Color.Blue;
             this.homeBtn.HoverState.Parent = this.homeBtn;
+            this.homeBtn.Image = ((System.Drawing.Image)(resources.GetObject("homeBtn.Image")));
+            this.homeBtn.ImageOffset = new System.Drawing.Point(-11, 0);
+            this.homeBtn.ImageSize = new System.Drawing.Size(35, 35);
             this.homeBtn.Location = new System.Drawing.Point(0, 54);
             this.homeBtn.Name = "homeBtn";
             this.homeBtn.ShadowDecoration.Parent = this.homeBtn;
@@ -213,15 +305,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1118, 632);
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.topPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.topPanel.ResumeLayout(false);
             this.topPanel.PerformLayout();
+            this.controlBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -234,12 +329,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button4;
+        private Guna.UI2.WinForms.Guna2Button viewOrdersBtn;
         private Guna.UI2.WinForms.Guna2Button customerBtn;
         private Guna.UI2.WinForms.Guna2Button ordersBtn;
         private Guna.UI2.WinForms.Guna2Button inventoryBtn;
         private Guna.UI2.WinForms.Guna2Button homeBtn;
         private System.Windows.Forms.Panel panelContainer;
+        private System.Windows.Forms.Panel controlBox;
+        private Guna.UI2.WinForms.Guna2Button minimizeBtn;
+        private Guna.UI2.WinForms.Guna2Button maximizeBtn;
+        private Guna.UI2.WinForms.Guna2Button kryssBtn;
     }
 }
 

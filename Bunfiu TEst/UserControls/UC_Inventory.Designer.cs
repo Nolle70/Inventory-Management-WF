@@ -109,6 +109,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.inventoryGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.inventoryGrid.ColumnHeadersHeight = 30;
+            this.inventoryGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -133,6 +134,7 @@
             this.inventoryGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.inventoryGrid.RowHeadersVisible = false;
             this.inventoryGrid.RowHeadersWidth = 25;
+            this.inventoryGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.inventoryGrid.RowTemplate.Height = 25;
             this.inventoryGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.inventoryGrid.Size = new System.Drawing.Size(869, 393);
@@ -149,7 +151,7 @@
             this.inventoryGrid.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.inventoryGrid.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inventoryGrid.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.inventoryGrid.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.inventoryGrid.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.inventoryGrid.ThemeStyle.HeaderStyle.Height = 30;
             this.inventoryGrid.ThemeStyle.ReadOnly = true;
             this.inventoryGrid.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;

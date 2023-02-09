@@ -8,14 +8,12 @@ namespace Inventory_App.UserControls
 {
     public class Customer
     {
-       
-
         public string name;
         public string id;
         public string phone;
-        public int TotalOrders;
-        public int TotalAmount;
-
+        public static List<Order> OrdersList = new List<Order>();
+        public int TotalOrders { get; set; }
+        public int TotalAmount { get; set; }
 
         public Customer(string name, string id, string phone)
         {

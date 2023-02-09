@@ -8,17 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Inventory_App.UserControls
 {
     public partial class UC_Customers : UserControl
     {
-        public List<Customer> customerList = new List<Customer>();
-        public DataTable customerTable = new DataTable();
-
+        public static List<Customer> customerList = new List<Customer>();
+        public static DataTable customerTable = new DataTable();
+       
         public UC_Customers()
         {
-            InitializeComponent();
-            
+            InitializeComponent(); 
         }
 
         private void newBtn_Click(object sender, EventArgs e)
@@ -80,18 +80,26 @@ namespace Inventory_App.UserControls
 
         public void UC_Customers_Load(object sender, EventArgs e)
         {
-            customerTable.Columns.Add("Name");
-            customerTable.Columns.Add("Id");
-            customerTable.Columns.Add("Phone");
-            customerGrid.DataSource = customerTable;
-            customerList.Add(new Customer("Sara", "1", "073-214 83 50"));
-            customerList.Add(new Customer("Noel", "2", "072-197 80 59"));
-            customerList.Add(new Customer("Elton", "3", "076-543 53 12"));
-            customerTable.Rows.Add("Sara", "1", "073-214 83 50");
-            customerTable.Rows.Add("Noel", "2", "072-197 80 59");
-            customerTable.Rows.Add("Elton", "3", "076-543 53 12");
-            Bunfiu_TEst.UserControls.UC_Orders.dataLoad(customerTable);
+            LoadCustomerGrid(sender, e);
 
+            customerGrid.DataSource = customerTable;  
+ 
+        }
+
+        public static void LoadCustomerGrid(object sender, EventArgs e)
+        {
+            if (customerTable.Columns.Count == 0)
+            {
+                customerTable.Columns.Add("Name");
+                customerTable.Columns.Add("Id");
+                customerTable.Columns.Add("Phone");
+                customerList.Add(new Customer("Max", "1", "073-214 83 50"));
+                customerList.Add(new Customer("Noel", "2", "072-197 80 59"));
+                customerList.Add(new Customer("Elton", "3", "076-543 53 12"));
+                customerTable.Rows.Add("Max", "1", "073-214 83 50");
+                customerTable.Rows.Add("Noel", "2", "072-197 80 59");
+                customerTable.Rows.Add("Elton", "3", "076-543 53 12");
+            }
         }
 
         private void customerGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

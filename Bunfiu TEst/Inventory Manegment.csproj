@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UserControls\Category.cs" />
+    <Compile Include="UserControls\Order.cs" />
+    <Compile Include="UserControls\OrderItem.cs" />
     <Compile Include="UserControls\Customer.cs" />
     <Compile Include="UserControls\Product.cs" />
     <Compile Include="Form1.cs">
@@ -62,6 +65,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\RevenueByDate.cs" />
+    <Compile Include="UserControls\TopProduct.cs" />
     <Compile Include="UserControls\UC_Home.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -85,6 +90,12 @@
     </Compile>
     <Compile Include="UserControls\UC_Customers.Designer.cs">
       <DependentUpon>UC_Customers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_viewOrders.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_viewOrders.Designer.cs">
+      <DependentUpon>UC_viewOrders.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -110,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Orders.resx">
       <DependentUpon>UC_Orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_viewOrders.resx">
+      <DependentUpon>UC_viewOrders.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

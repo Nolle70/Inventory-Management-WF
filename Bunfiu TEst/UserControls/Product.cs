@@ -11,10 +11,10 @@ namespace Inventory_App
 
         public string name;
         public string price;
-        public string quantity;
+        public int quantity;
         public Categories category;
 
-        public Product(string name, string price, string quantity, Categories category)
+        public Product(string name, string price, int quantity, Categories category)
         {
             this.name = name;
             this.price = price;

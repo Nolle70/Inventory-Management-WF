@@ -8,13 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_App;
+using Inventory_App.UserControls;
+
 
 namespace Bunfiu_TEst.UserControls
 {
     public partial class UC_Inventory : UserControl
     {
-        List<Product> inventoryList = new List<Product>();
-        DataTable productsTable = new DataTable();
+        public static List<Product> inventoryList = new List<Product>();
+        public static DataTable productsTable = new DataTable();
+        public static List<TopProduct> topProducts = new List<TopProduct>();
 
 
         public UC_Inventory()
@@ -39,13 +42,17 @@ namespace Bunfiu_TEst.UserControls
             {
                 string name = nameText.Text;
                 string price = priceText.Text;
-                string quantity = quantityText.Text;
+                int quantity = Convert.ToInt32(quantityText.Text);
                 string category = (string)selectBox.SelectedItem;
                 int index = selectBox.SelectedIndex;
 
                 inventoryList.Add(new Product(name, price, quantity, (Categories)index));
                 productsTable.Rows.Add(name, price, quantity, category);
+
+                topProducts.Add(new TopProduct(name, 0));
+
                 newBtn_Click(sender, e);
+
             }
             else
             {
@@ -70,7 +77,7 @@ namespace Bunfiu_TEst.UserControls
                 productsTable.Rows.Add(name, price, quantity, category);
                 inventoryList[index].name = name;
                 inventoryList[index].price = price;
-                inventoryList[index].quantity = quantity;
+                inventoryList[index].quantity = Convert.ToInt32(quantity);
                 inventoryList[index].category = (Categories)selected;
             }
         }
@@ -96,7 +103,7 @@ namespace Bunfiu_TEst.UserControls
                 int index = (int)inventoryList[inventoryGrid.CurrentCell.RowIndex].category;
                 nameText.Text = inventoryList[inventoryGrid.CurrentCell.RowIndex].name;
                 priceText.Text = inventoryList[inventoryGrid.CurrentCell.RowIndex].price;
-                quantityText.Text = inventoryList[inventoryGrid.CurrentCell.RowIndex].quantity;
+                quantityText.Text = inventoryList[inventoryGrid.CurrentCell.RowIndex].quantity.ToString();
                 selectBox.SelectedIndex = index;
 
             }
@@ -106,21 +113,31 @@ namespace Bunfiu_TEst.UserControls
             }
         }
 
-        private void UC_Inventory_Load(object sender, EventArgs e)
+        public void UC_Inventory_Load(object sender, EventArgs e)
         {
-            productsTable.Columns.Add("Name");
-            productsTable.Columns.Add("Price");
-            productsTable.Columns.Add("Quantity");
-            productsTable.Columns.Add("Category");
-            inventoryGrid.DataSource = productsTable;
-            inventoryList.Add(new Product("Computer", "399", "10", Categories.Electronics));
-            productsTable.Rows.Add("Computer", "399$", "10", "Electronics");
-            inventoryList.Add(new Product("Anabola", "2199", "23", Categories.Pharmacy));
-            productsTable.Rows.Add("Anabola", "2199$", "23", "Pharmacy");
-            inventoryList.Add(new Product("Apple", "1", "1000", Categories.Grocery));
-            productsTable.Rows.Add("Apple", "1$", "1000", "Grocery");
+            LoadInventoryGrid();
+            
+            inventoryGrid.DataSource = productsTable;     
+        }
 
-           
+        public static void LoadInventoryGrid()
+        {
+            if (productsTable.Columns.Count == 0)
+            {
+                productsTable.Columns.Add("Name");
+                productsTable.Columns.Add("Price");
+                productsTable.Columns.Add("Quantity", typeof(int));
+                productsTable.Columns.Add("Category");
+                inventoryList.Add(new Product("Mobil", "399", 10, Categories.Electronics));
+                productsTable.Rows.Add("Mobil", "399$", 10, "Electronics");
+                inventoryList.Add(new Product("Alvedon", "18", 23, Categories.Pharmacy));
+                productsTable.Rows.Add("Alvedon", "18$", 23, "Pharmacy");
+                inventoryList.Add(new Product("Äpple", "1", 1000, Categories.Grocery));
+                productsTable.Rows.Add("Äpple", "1$", 1000, "Grocery");
+                topProducts.Add(new TopProduct("Mobil", 1));
+                topProducts.Add(new TopProduct("Alvedon", 2));
+                topProducts.Add(new TopProduct("Äpple", 2));
+            }
         }
 
         private void searchBox_TextChanged(object sender, EventArgs e)
