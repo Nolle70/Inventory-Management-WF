@@ -11,7 +11,7 @@ namespace Inventory_App.UserControls
     public class Order
     {
         public Customer customer { get; set; }
-        public int totalOrderPrice { get; set; }
+        public int totalOrderPrice = 0;
         public DateTime orderDate { get; set; }
         public List<OrderItem> orderList = new List<OrderItem>();
         public int soldProducts = 0;
@@ -40,7 +40,7 @@ namespace Inventory_App.UserControls
             {
                 totalOrderPrice += item.calculateTotalPrice();
             }
-            
+            MessageBox.Show(totalOrderPrice.ToString());
             return totalOrderPrice;
         }
 

@@ -69,9 +69,9 @@ namespace Bunfiu_TEst.UserControls
             customerLabel.Text = UC_Customers.customerList.Count.ToString();
             //soldProducts.Text = getTotalsoldProducts().ToString();
             soldProducts.Text = UC_Orders.totalSoldProducts.ToString();
+            //getTotalRevenue();
+            MessageBox.Show(getTotalRevenue().ToString());
 
-       
-            
 
             revenueChart.DataSource = dataList;
             revenueChart.Series[0].XValueMember = "Date";
@@ -100,10 +100,12 @@ namespace Bunfiu_TEst.UserControls
         {
             totalRevenue = 0;
             foreach(Order order in UC_Orders.OrdersList)
-            {   
-                totalRevenue += order.getTotalOrderPrice();         
+            {
+                
+                totalRevenue += order.getTotalOrderPrice();
+                
             }
-
+            
             return totalRevenue;
         }
 
