@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.Json;
+using System.IO;
+using Inventory_App.Classes;
 
 
 namespace Inventory_App.UserControls
@@ -14,54 +17,72 @@ namespace Inventory_App.UserControls
     public partial class UC_Customers : UserControl
     {
         public static List<Customer> customerList = new List<Customer>();
-        public static DataTable customerTable = new DataTable();
-       
+        public string path = @"C:\Users\Noel Nevrén\Desktop\Saker\Code\Projects in VS\Bunfiu TEst\Bunfiu TEst\Json\customers.json";
+        Customer temp = new Customer();
         public UC_Customers()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            RefreshCustomerGrid();
+        }
+
+        public void LoadCustomerData()
+        {
+            string jsonData = File.ReadAllText(path);
+            customerList = JSONUtility.DeserializeListFromJson<Customer>(jsonData);
+            GenerateId.LoadCustomerIds(customerList);
+        }
+        public void UpdateJsonFile()
+        {
+            File.WriteAllText(path, JSONUtility.SerializeListToJson(customerList));
+        }
+
+        private void RefreshCustomerGrid()
+        {
+            LoadCustomerData();
+            customerGrid.DataSource = customerList;
         }
 
         private void newBtn_Click(object sender, EventArgs e)
         {
             nameText.Text = "";
-            idText.Text = "";
             phoneText.Text = "";
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            if (nameText.Text != "" && idText.Text != "" && phoneText.Text != "" &&
-              nameText.Text != "Name..." && idText.Text != "Price..." && phoneText.Text != "Quantity...")
+            if (nameText.Text != "" && phoneText.Text != "")
             {
                 string name = nameText.Text;
-                string id = idText.Text;
                 string phone = phoneText.Text;
+                Customer customer = new Customer { Namn = name, Telefon = phone, Ordrar = 0, Id = GenerateId.GenerateUniqueId(GenerateId.UsedCustomerIds)};
+                customerList.Add(customer);
 
-                customerList.Add(new Customer(name, id, phone));
-                customerTable.Rows.Add(name, id, phone);
+                UpdateJsonFile();
+                RefreshCustomerGrid();
+
                 newBtn_Click(sender, e);
             }
             else
             {
-                MessageBox.Show("Please enter in all fields");
+                MessageBox.Show("Fyll i alla fält");
             }
         }
 
         private void editBtn_Click(object sender, EventArgs e)
         {
             string name = nameText.Text;
-            string id = idText.Text;
             string phone = phoneText.Text;
 
             if (customerGrid.CurrentCell != null)
             {
                 int index = customerGrid.CurrentCell.RowIndex;
-                customerTable.Rows[index].Delete();
-                customerTable.Rows.Add(name, id, phone);
-                customerList[index].name = name;
-                customerList[index].id = id;
-                customerList[index].phone = phone;
+               
+                customerList[index].Namn = name;
+                customerList[index].Telefon = phone;
             }
+
+            UpdateJsonFile();
+            RefreshCustomerGrid();
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
@@ -69,50 +90,36 @@ namespace Inventory_App.UserControls
             if (customerGrid.CurrentCell != null)
             {
                 int index = customerGrid.CurrentCell.RowIndex;
-                customerTable.Rows[index].Delete();
+            
                 customerList.RemoveAt(index);
             }
             else
             {
-                MessageBox.Show("Please choose a valid cell to delete");
+                MessageBox.Show("Välj en rad innan du raderar");
             }
+            UpdateJsonFile();
+            RefreshCustomerGrid();
         }
 
         public void UC_Customers_Load(object sender, EventArgs e)
         {
-            LoadCustomerGrid(sender, e);
 
-            customerGrid.DataSource = customerTable;  
- 
+            
+
         }
 
-        public static void LoadCustomerGrid(object sender, EventArgs e)
-        {
-            if (customerTable.Columns.Count == 0)
-            {
-                customerTable.Columns.Add("Name");
-                customerTable.Columns.Add("Id");
-                customerTable.Columns.Add("Phone");
-                customerList.Add(new Customer("Max", "1", "073-214 83 50"));
-                customerList.Add(new Customer("Noel", "2", "072-197 80 59"));
-                customerList.Add(new Customer("Elton", "3", "076-543 53 12"));
-                customerTable.Rows.Add("Max", "1", "073-214 83 50");
-                customerTable.Rows.Add("Noel", "2", "072-197 80 59");
-                customerTable.Rows.Add("Elton", "3", "076-543 53 12");
-            }
-        }
+       
 
         private void customerGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                nameText.Text = customerList[customerGrid.CurrentCell.RowIndex].name;
-                idText.Text = customerList[customerGrid.CurrentCell.RowIndex].id;
-                phoneText.Text = customerList[customerGrid.CurrentCell.RowIndex].phone;
+                nameText.Text = customerList[customerGrid.CurrentCell.RowIndex].Namn;
+                phoneText.Text = customerList[customerGrid.CurrentCell.RowIndex].Telefon;
             }
             catch (Exception error)
             {
-                Console.WriteLine("There hase been an error: " + error);
+                Console.WriteLine("Det har uppstått ett fel: " + error);
             }
         }
     }

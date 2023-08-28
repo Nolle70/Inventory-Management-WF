@@ -56,7 +56,6 @@
             this.orderGrid = new Guna.UI2.WinForms.Guna2DataGridView();
             this.quantityText = new Guna.UI2.WinForms.Guna2TextBox();
             this.addItem = new Guna.UI2.WinForms.Guna2Button();
-            this.viewOrders = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerGrid)).BeginInit();
             this.guna2GradientPanel2.SuspendLayout();
@@ -77,7 +76,6 @@
             this.guna2GradientPanel1.Location = new System.Drawing.Point(14, 41);
             this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
-            this.guna2GradientPanel1.ShadowDecoration.Parent = this.guna2GradientPanel1;
             this.guna2GradientPanel1.Size = new System.Drawing.Size(416, 210);
             this.guna2GradientPanel1.TabIndex = 5;
             // 
@@ -87,11 +85,6 @@
             this.customerGrid.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.customerGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.customerGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.customerGrid.BackgroundColor = System.Drawing.Color.White;
-            this.customerGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.customerGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.customerGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.LimeGreen;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -101,7 +94,6 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.customerGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.customerGrid.ColumnHeadersHeight = 30;
-            this.customerGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -110,7 +102,6 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.customerGrid.DefaultCellStyle = dataGridViewCellStyle3;
-            this.customerGrid.EnableHeadersVisualStyles = false;
             this.customerGrid.GridColor = System.Drawing.Color.Silver;
             this.customerGrid.Location = new System.Drawing.Point(17, 3);
             this.customerGrid.MultiSelect = false;
@@ -128,10 +119,8 @@
             this.customerGrid.RowHeadersWidth = 25;
             this.customerGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.customerGrid.RowTemplate.Height = 25;
-            this.customerGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.customerGrid.Size = new System.Drawing.Size(383, 192);
             this.customerGrid.TabIndex = 2;
-            this.customerGrid.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.customerGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.customerGrid.ThemeStyle.AlternatingRowsStyle.Font = null;
             this.customerGrid.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
@@ -153,7 +142,8 @@
             this.customerGrid.ThemeStyle.RowsStyle.Height = 25;
             this.customerGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.customerGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.customerGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.customerGrid_RowEnter);
+            this.customerGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customerGrid_CellClick);
+         
             // 
             // insertOrder
             // 
@@ -161,21 +151,18 @@
             this.insertOrder.AutoRoundedCorners = true;
             this.insertOrder.BackColor = System.Drawing.SystemColors.Control;
             this.insertOrder.BorderRadius = 21;
-            this.insertOrder.CheckedState.Parent = this.insertOrder;
-            this.insertOrder.CustomImages.Parent = this.insertOrder;
             this.insertOrder.FillColor = System.Drawing.Color.LimeGreen;
             this.insertOrder.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.insertOrder.ForeColor = System.Drawing.Color.Black;
             this.insertOrder.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.insertOrder.HoverState.Parent = this.insertOrder;
             this.insertOrder.Image = ((System.Drawing.Image)(resources.GetObject("insertOrder.Image")));
             this.insertOrder.ImageSize = new System.Drawing.Size(25, 25);
-            this.insertOrder.Location = new System.Drawing.Point(14, 441);
+            this.insertOrder.Location = new System.Drawing.Point(14, 488);
             this.insertOrder.Name = "insertOrder";
-            this.insertOrder.ShadowDecoration.Parent = this.insertOrder;
+            this.insertOrder.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.insertOrder.Size = new System.Drawing.Size(218, 45);
             this.insertOrder.TabIndex = 6;
-            this.insertOrder.Text = "Insert Order";
+            this.insertOrder.Text = "Godkänn order";
             this.insertOrder.Click += new System.EventHandler(this.newBtn_Click);
             // 
             // guna2HtmlLabel1
@@ -185,9 +172,9 @@
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.LimeGreen;
             this.guna2HtmlLabel1.Location = new System.Drawing.Point(164, 6);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(138, 32);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(92, 32);
             this.guna2HtmlLabel1.TabIndex = 7;
-            this.guna2HtmlLabel1.Text = "Customers";
+            this.guna2HtmlLabel1.Text = "Kunder";
             // 
             // guna2HtmlLabel2
             // 
@@ -196,9 +183,9 @@
             this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.LimeGreen;
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(640, 9);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(113, 32);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(123, 32);
             this.guna2HtmlLabel2.TabIndex = 9;
-            this.guna2HtmlLabel2.Text = "Products";
+            this.guna2HtmlLabel2.Text = "Produkter";
             // 
             // guna2GradientPanel2
             // 
@@ -212,7 +199,6 @@
             this.guna2GradientPanel2.Location = new System.Drawing.Point(444, 44);
             this.guna2GradientPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.guna2GradientPanel2.Name = "guna2GradientPanel2";
-            this.guna2GradientPanel2.ShadowDecoration.Parent = this.guna2GradientPanel2;
             this.guna2GradientPanel2.Size = new System.Drawing.Size(488, 207);
             this.guna2GradientPanel2.TabIndex = 8;
             // 
@@ -222,11 +208,6 @@
             this.inventoryGrid.AllowUserToDeleteRows = false;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
             this.inventoryGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.inventoryGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.inventoryGrid.BackgroundColor = System.Drawing.Color.White;
-            this.inventoryGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.inventoryGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.inventoryGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.LimeGreen;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -236,7 +217,6 @@
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.inventoryGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.inventoryGrid.ColumnHeadersHeight = 30;
-            this.inventoryGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -245,7 +225,6 @@
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.inventoryGrid.DefaultCellStyle = dataGridViewCellStyle7;
-            this.inventoryGrid.EnableHeadersVisualStyles = false;
             this.inventoryGrid.GridColor = System.Drawing.Color.Silver;
             this.inventoryGrid.Location = new System.Drawing.Point(17, 3);
             this.inventoryGrid.MultiSelect = false;
@@ -263,10 +242,8 @@
             this.inventoryGrid.RowHeadersWidth = 25;
             this.inventoryGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.inventoryGrid.RowTemplate.Height = 25;
-            this.inventoryGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.inventoryGrid.Size = new System.Drawing.Size(454, 189);
             this.inventoryGrid.TabIndex = 2;
-            this.inventoryGrid.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.inventoryGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.inventoryGrid.ThemeStyle.AlternatingRowsStyle.Font = null;
             this.inventoryGrid.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
@@ -300,16 +277,13 @@
             this.nameText.DisabledState.BorderColor = System.Drawing.Color.White;
             this.nameText.DisabledState.FillColor = System.Drawing.Color.White;
             this.nameText.DisabledState.ForeColor = System.Drawing.Color.LimeGreen;
-            this.nameText.DisabledState.Parent = this.nameText;
             this.nameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.LightGreen;
             this.nameText.FillColor = System.Drawing.Color.WhiteSmoke;
             this.nameText.FocusedState.BorderColor = System.Drawing.Color.DarkGreen;
-            this.nameText.FocusedState.Parent = this.nameText;
             this.nameText.FocusedState.PlaceholderForeColor = System.Drawing.Color.LimeGreen;
             this.nameText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nameText.ForeColor = System.Drawing.Color.LimeGreen;
             this.nameText.HoverState.BorderColor = System.Drawing.Color.DarkGreen;
-            this.nameText.HoverState.Parent = this.nameText;
             this.nameText.HoverState.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.nameText.IconRightOffset = new System.Drawing.Point(5, 0);
             this.nameText.IconRightSize = new System.Drawing.Size(30, 30);
@@ -318,11 +292,10 @@
             this.nameText.Name = "nameText";
             this.nameText.PasswordChar = '\0';
             this.nameText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.nameText.PlaceholderText = "Name...";
+            this.nameText.PlaceholderText = "Namn...";
             this.nameText.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.nameText.SelectedText = "";
             this.nameText.ShadowDecoration.Depth = 15;
-            this.nameText.ShadowDecoration.Parent = this.nameText;
             this.nameText.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(5, 5, 0, 0);
             this.nameText.Size = new System.Drawing.Size(140, 45);
             this.nameText.TabIndex = 10;
@@ -339,16 +312,13 @@
             this.idText.DisabledState.BorderColor = System.Drawing.Color.White;
             this.idText.DisabledState.FillColor = System.Drawing.Color.White;
             this.idText.DisabledState.ForeColor = System.Drawing.Color.LimeGreen;
-            this.idText.DisabledState.Parent = this.idText;
             this.idText.DisabledState.PlaceholderForeColor = System.Drawing.Color.LightGreen;
             this.idText.FillColor = System.Drawing.Color.WhiteSmoke;
             this.idText.FocusedState.BorderColor = System.Drawing.Color.DarkGreen;
-            this.idText.FocusedState.Parent = this.idText;
             this.idText.FocusedState.PlaceholderForeColor = System.Drawing.Color.LimeGreen;
             this.idText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.idText.ForeColor = System.Drawing.Color.LimeGreen;
             this.idText.HoverState.BorderColor = System.Drawing.Color.DarkGreen;
-            this.idText.HoverState.Parent = this.idText;
             this.idText.HoverState.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.idText.IconRightOffset = new System.Drawing.Point(5, 0);
             this.idText.IconRightSize = new System.Drawing.Size(30, 30);
@@ -361,7 +331,6 @@
             this.idText.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.idText.SelectedText = "";
             this.idText.ShadowDecoration.Depth = 15;
-            this.idText.ShadowDecoration.Parent = this.idText;
             this.idText.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(5, 5, 0, 0);
             this.idText.Size = new System.Drawing.Size(68, 45);
             this.idText.TabIndex = 11;
@@ -378,16 +347,13 @@
             this.orderIdText.DisabledState.BorderColor = System.Drawing.Color.White;
             this.orderIdText.DisabledState.FillColor = System.Drawing.Color.White;
             this.orderIdText.DisabledState.ForeColor = System.Drawing.Color.LimeGreen;
-            this.orderIdText.DisabledState.Parent = this.orderIdText;
             this.orderIdText.DisabledState.PlaceholderForeColor = System.Drawing.Color.LightGreen;
             this.orderIdText.FillColor = System.Drawing.Color.WhiteSmoke;
             this.orderIdText.FocusedState.BorderColor = System.Drawing.Color.DarkGreen;
-            this.orderIdText.FocusedState.Parent = this.orderIdText;
             this.orderIdText.FocusedState.PlaceholderForeColor = System.Drawing.Color.LimeGreen;
             this.orderIdText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.orderIdText.ForeColor = System.Drawing.Color.LimeGreen;
             this.orderIdText.HoverState.BorderColor = System.Drawing.Color.DarkGreen;
-            this.orderIdText.HoverState.Parent = this.orderIdText;
             this.orderIdText.HoverState.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.orderIdText.IconRightOffset = new System.Drawing.Point(5, 0);
             this.orderIdText.IconRightSize = new System.Drawing.Size(30, 30);
@@ -396,11 +362,10 @@
             this.orderIdText.Name = "orderIdText";
             this.orderIdText.PasswordChar = '\0';
             this.orderIdText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.orderIdText.PlaceholderText = "OrderID...";
+            this.orderIdText.PlaceholderText = "Order ID...";
             this.orderIdText.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.orderIdText.SelectedText = "";
             this.orderIdText.ShadowDecoration.Depth = 15;
-            this.orderIdText.ShadowDecoration.Parent = this.orderIdText;
             this.orderIdText.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(5, 5, 0, 0);
             this.orderIdText.Size = new System.Drawing.Size(218, 45);
             this.orderIdText.TabIndex = 12;
@@ -410,16 +375,14 @@
             // 
             this.datePicker.AutoRoundedCorners = true;
             this.datePicker.BorderRadius = 20;
-            this.datePicker.CheckedState.Parent = this.datePicker;
+            this.datePicker.Checked = true;
             this.datePicker.FillColor = System.Drawing.Color.LimeGreen;
             this.datePicker.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.datePicker.HoverState.Parent = this.datePicker;
             this.datePicker.Location = new System.Drawing.Point(14, 382);
             this.datePicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.datePicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.datePicker.Name = "datePicker";
-            this.datePicker.ShadowDecoration.Parent = this.datePicker;
             this.datePicker.Size = new System.Drawing.Size(218, 43);
             this.datePicker.TabIndex = 13;
             this.datePicker.Value = new System.DateTime(2023, 2, 8, 11, 27, 40, 80);
@@ -436,7 +399,6 @@
             this.guna2GradientPanel3.Location = new System.Drawing.Point(273, 317);
             this.guna2GradientPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.guna2GradientPanel3.Name = "guna2GradientPanel3";
-            this.guna2GradientPanel3.ShadowDecoration.Parent = this.guna2GradientPanel3;
             this.guna2GradientPanel3.Size = new System.Drawing.Size(659, 232);
             this.guna2GradientPanel3.TabIndex = 9;
             // 
@@ -446,11 +408,6 @@
             this.orderGrid.AllowUserToDeleteRows = false;
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
             this.orderGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
-            this.orderGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.orderGrid.BackgroundColor = System.Drawing.Color.White;
-            this.orderGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.orderGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.orderGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.LimeGreen;
             dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -460,7 +417,6 @@
             dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.orderGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.orderGrid.ColumnHeadersHeight = 30;
-            this.orderGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -469,7 +425,6 @@
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.orderGrid.DefaultCellStyle = dataGridViewCellStyle11;
-            this.orderGrid.EnableHeadersVisualStyles = false;
             this.orderGrid.GridColor = System.Drawing.Color.Silver;
             this.orderGrid.Location = new System.Drawing.Point(17, 3);
             this.orderGrid.MultiSelect = false;
@@ -487,10 +442,8 @@
             this.orderGrid.RowHeadersWidth = 25;
             this.orderGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.orderGrid.RowTemplate.Height = 25;
-            this.orderGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.orderGrid.Size = new System.Drawing.Size(625, 213);
             this.orderGrid.TabIndex = 2;
-            this.orderGrid.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.orderGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.orderGrid.ThemeStyle.AlternatingRowsStyle.Font = null;
             this.orderGrid.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
@@ -524,16 +477,13 @@
             this.quantityText.DisabledState.BorderColor = System.Drawing.Color.White;
             this.quantityText.DisabledState.FillColor = System.Drawing.Color.White;
             this.quantityText.DisabledState.ForeColor = System.Drawing.Color.LimeGreen;
-            this.quantityText.DisabledState.Parent = this.quantityText;
             this.quantityText.DisabledState.PlaceholderForeColor = System.Drawing.Color.LightGreen;
             this.quantityText.FillColor = System.Drawing.Color.WhiteSmoke;
             this.quantityText.FocusedState.BorderColor = System.Drawing.Color.DarkGreen;
-            this.quantityText.FocusedState.Parent = this.quantityText;
             this.quantityText.FocusedState.PlaceholderForeColor = System.Drawing.Color.LimeGreen;
             this.quantityText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quantityText.ForeColor = System.Drawing.Color.LimeGreen;
             this.quantityText.HoverState.BorderColor = System.Drawing.Color.DarkGreen;
-            this.quantityText.HoverState.Parent = this.quantityText;
             this.quantityText.HoverState.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.quantityText.IconRightOffset = new System.Drawing.Point(5, 0);
             this.quantityText.IconRightSize = new System.Drawing.Size(30, 30);
@@ -542,11 +492,10 @@
             this.quantityText.Name = "quantityText";
             this.quantityText.PasswordChar = '\0';
             this.quantityText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.quantityText.PlaceholderText = "Quantity";
+            this.quantityText.PlaceholderText = "Antal";
             this.quantityText.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.quantityText.SelectedText = "";
             this.quantityText.ShadowDecoration.Depth = 15;
-            this.quantityText.ShadowDecoration.Parent = this.quantityText;
             this.quantityText.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(5, 5, 0, 0);
             this.quantityText.Size = new System.Drawing.Size(186, 45);
             this.quantityText.TabIndex = 14;
@@ -558,50 +507,24 @@
             this.addItem.AutoRoundedCorners = true;
             this.addItem.BackColor = System.Drawing.SystemColors.Control;
             this.addItem.BorderRadius = 21;
-            this.addItem.CheckedState.Parent = this.addItem;
-            this.addItem.CustomImages.Parent = this.addItem;
             this.addItem.FillColor = System.Drawing.Color.LimeGreen;
             this.addItem.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addItem.ForeColor = System.Drawing.Color.Black;
             this.addItem.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.addItem.HoverState.Parent = this.addItem;
             this.addItem.Image = ((System.Drawing.Image)(resources.GetObject("addItem.Image")));
             this.addItem.ImageSize = new System.Drawing.Size(25, 25);
             this.addItem.Location = new System.Drawing.Point(640, 267);
             this.addItem.Name = "addItem";
-            this.addItem.ShadowDecoration.Parent = this.addItem;
+            this.addItem.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.addItem.Size = new System.Drawing.Size(181, 45);
             this.addItem.TabIndex = 15;
-            this.addItem.Text = "Add Product";
+            this.addItem.Text = "Lägg till";
             this.addItem.Click += new System.EventHandler(this.addItem_Click);
-            // 
-            // viewOrders
-            // 
-            this.viewOrders.Animated = true;
-            this.viewOrders.AutoRoundedCorners = true;
-            this.viewOrders.BackColor = System.Drawing.SystemColors.Control;
-            this.viewOrders.BorderRadius = 21;
-            this.viewOrders.CheckedState.Parent = this.viewOrders;
-            this.viewOrders.CustomImages.Parent = this.viewOrders;
-            this.viewOrders.FillColor = System.Drawing.Color.LimeGreen;
-            this.viewOrders.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewOrders.ForeColor = System.Drawing.Color.Black;
-            this.viewOrders.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.viewOrders.HoverState.Parent = this.viewOrders;
-            this.viewOrders.Image = ((System.Drawing.Image)(resources.GetObject("viewOrders.Image")));
-            this.viewOrders.ImageSize = new System.Drawing.Size(25, 25);
-            this.viewOrders.Location = new System.Drawing.Point(14, 504);
-            this.viewOrders.Name = "viewOrders";
-            this.viewOrders.ShadowDecoration.Parent = this.viewOrders;
-            this.viewOrders.Size = new System.Drawing.Size(218, 45);
-            this.viewOrders.TabIndex = 16;
-            this.viewOrders.Text = "View Orders";
             // 
             // UC_Orders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.viewOrders);
             this.Controls.Add(this.addItem);
             this.Controls.Add(this.quantityText);
             this.Controls.Add(this.guna2GradientPanel3);
@@ -616,7 +539,6 @@
             this.Controls.Add(this.guna2GradientPanel1);
             this.Name = "UC_Orders";
             this.Size = new System.Drawing.Size(942, 560);
-            this.Load += new System.EventHandler(this.UC_Orders_Load);
             this.guna2GradientPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customerGrid)).EndInit();
             this.guna2GradientPanel2.ResumeLayout(false);
@@ -645,6 +567,5 @@
         private Guna.UI2.WinForms.Guna2DataGridView orderGrid;
         private Guna.UI2.WinForms.Guna2TextBox quantityText;
         private Guna.UI2.WinForms.Guna2Button addItem;
-        private Guna.UI2.WinForms.Guna2Button viewOrders;
     }
 }

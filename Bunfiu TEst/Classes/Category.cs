@@ -8,10 +8,10 @@ namespace Inventory_App
 {
     public enum Categories
     {
-        Electronics,
-        Hardware,
-        Grocery,
-        Pharmacy,
-        Automotive
+        Elektronik,
+        Reservdelar,
+        Livsmedel,
+        Läkemedel,
+        Smycken
     }
 }

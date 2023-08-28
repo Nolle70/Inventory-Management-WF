@@ -58,7 +58,7 @@ namespace Bunfiu_TEst
         {
             UC_Orders uc = new UC_Orders();
             addUserControl(uc);
-            topPanel.BackColor = Color.Green;
+            topPanel.BackColor = Color.LimeGreen;
         }
 
         private void customerBtn_Click(object sender, EventArgs e)
@@ -107,9 +107,9 @@ namespace Bunfiu_TEst
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void viewOrdersBtn_Click(object sender, EventArgs e)
+        public void viewOrdersBtn_Click(object sender, EventArgs e)
         {
-            UC_viewOrders uc = new UC_viewOrders();
+            Inventory_App.UserControls3.UC_viewOrders uc = new Inventory_App.UserControls3.UC_viewOrders();
             addUserControl(uc);
             topPanel.BackColor = Color.Cyan;
         }

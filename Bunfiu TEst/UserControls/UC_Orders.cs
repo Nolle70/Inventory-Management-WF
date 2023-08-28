@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_App.UserControls;
 using Inventory_App;
+using System.IO;
+using System.Text.Json;
+using Inventory_App.Classes;
 
 namespace Bunfiu_TEst.UserControls
 {
@@ -17,150 +20,142 @@ namespace Bunfiu_TEst.UserControls
         public static List<OrderItem> OneOrder = new List<OrderItem>();
 
         public static List<Order> OrdersList = new List<Order>();
-        
-        public static DataTable customerTable = new DataTable();
 
-        public static DataTable inventoryTable = new DataTable();
+        UC_Inventory inv = new UC_Inventory();
+        UC_Customers cus = new UC_Customers();
 
-        public static DataTable orderTable = new DataTable();
-
-        public static List<TopProduct> topList = new List<TopProduct>();
-
-        static int num = 1;
-        static int num2 = 1;
-        public static int totalOrdersPrice;
+        public static double totalOrdersPrice = 0;
         public static int totalSoldProducts = 0;
-        int index;
+        public static int totalProducts = 0;
+        string path = @"C:\Users\Noel Nevrén\Desktop\Saker\Code\Projects in VS\Bunfiu TEst\Bunfiu TEst\Json\orders.json";
         public UC_Orders()
         {
             InitializeComponent();
-            
+
+            RefreshGrids();
+            datePicker.Value = DateTime.Today;
+        }
+        
+        public void LoadOrderData()
+        {
+            string jsonData = File.ReadAllText(path);
+            OrdersList = JSONUtility.DeserializeListFromJson<Order>(jsonData);
+            GenerateId.LoadOrderIds(OrdersList);
+        }
+        public void UpdateJsonFile()
+        {
+            File.WriteAllText(path, JSONUtility.SerializeListToJson(OrdersList));
         }
 
-        private void newBtn_Click(object sender, EventArgs e)
-        {
-            if(OneOrder.Count > 0)
-            { 
-
-                DateTime date = datePicker.Value;
-                Customer customer = UC_Customers.customerList[customerGrid.CurrentCell.RowIndex];
-                OrdersList.Add(new Order(customer, date, OneOrder));
-                Order temp = OrdersList[OrdersList.Count - 1];
-                UC_viewOrders.loadOrdersGrid();
-                UC_viewOrders.orderTable.Rows.Add(num2.ToString(), temp.customer.name,temp.getTotalOrderPrice().ToString(), temp.orderDate.ToString());
-                totalOrdersPrice += temp.getTotalOrderPrice();
-                
-                UC_Home.dataList.Add(new RevenueByDate(date, Convert.ToDecimal(OrdersList[OrdersList.Count-1].getTotalOrderPrice())));
-                subtractInventory(temp);
-                orderTable.Clear();
-                OneOrder.Clear();
-                num2++;
-            }
-            else
+        private void RefreshGrids() //Hämtar all data från json och refreshar grids
+        { 
+            LoadOrderData();
+            orderGrid.DataSource = null;
+            orderGrid.DataSource = OneOrder;
+            inv.LoadInventoryData();
+            inventoryGrid.DataSource = UC_Inventory.inventoryList;
+            cus.LoadCustomerData();
+            customerGrid.DataSource = UC_Customers.customerList;
+            if (orderGrid.Columns.Count > 4)
             {
-                MessageBox.Show("Please order at least one item");
-            }
-            
-           
-            
-        }
-
-        private void subtractInventory(Order order)
-        {
-            foreach(OrderItem item in order.orderList)
-            {
-                totalSoldProducts += item.quantity;
-                index = UC_Inventory.inventoryList.IndexOf(item.product);
-                UC_Inventory.inventoryList[index].quantity -= item.quantity;
-                UC_Inventory.productsTable.Rows[index]["Quantity"] = UC_Inventory.inventoryList[index].quantity;
-
-                foreach(TopProduct product in UC_Inventory.topProducts)
+                foreach(DataGridViewColumn column in orderGrid.Columns)
                 {
-                    if(product.Name == item.product.name)
+                    if(column.ValueType == typeof(Product))
                     {
-                        product.Quantity += item.quantity;
+                        orderGrid.Columns.Remove(column);
+                        break;
                     }
                 }
             }
-
-            UC_Inventory.LoadInventoryGrid();
-
-        }
-
-        private void UC_Orders_Load(object sender, EventArgs e)
-        {
-            UC_Customers.LoadCustomerGrid(sender, e); //Ladda data från customer och inventory
-            UC_Inventory.LoadInventoryGrid();
-            customerGrid.DataSource =  UC_Customers.customerTable; //Kopiera från customer och inventory
-            inventoryGrid.DataSource = UC_Inventory.productsTable;
-
-           if (orderTable.Columns.Count == 0)
-            {
-                orderTable.Columns.Add("Num");
-                orderTable.Columns.Add("Product");
-                orderTable.Columns.Add("Quantity");
-                orderTable.Columns.Add("Price");
-                orderTable.Columns.Add("Total price");
-                totalOrdersPrice = 0;
-            }
-            orderGrid.DataSource = orderTable;
-
         }
 
         private void addItem_Click(object sender, EventArgs e)
         {
-            string qunati = quantityText.Text;
-            int quantity;
-            bool success = int.TryParse(qunati, out quantity);
-            bool exist = true; 
-
-            if (success)
-            {            
-                Product product = UC_Inventory.inventoryList[inventoryGrid.CurrentCell.RowIndex];
-                if (product.quantity >= quantity)
+            int quantity = Convert.ToInt32(quantityText.Text);
+            Product product = UC_Inventory.inventoryList[inventoryGrid.CurrentCell.RowIndex]; //Hämtar vald produkt
+            bool duplicateExist = false;
+            if (product.Kvantitet >= quantity)
+            {
+                foreach(OrderItem item in OneOrder) // Kollar om den produkten redan finns tillagd isåfall ökar bara kvantiteten för den orderitem
                 {
-
-
-                    int price = Convert.ToInt32(product.price);
-                    foreach (OrderItem ord in OneOrder)
+                    if(item.Product.Namn == product.Namn)
                     {
-                        if (ord.product == product)
-                        {
-                            ord.quantity += quantity;
-                            ord.totalPrice = ord.calculateTotalPrice();
-                            orderTable.Rows[OneOrder.IndexOf(ord)]["Quantity"] = ord.quantity.ToString();
-                            orderTable.Rows[OneOrder.IndexOf(ord)]["Total Price"] = ord.totalPrice.ToString();
-                            exist = false;
-                            break;
-                        }
-                    }
-
-                    if (exist)
-                    {
-                        OneOrder.Add(new OrderItem(num, product, quantity, price));
-                        orderTable.Rows.Add(num.ToString(), product.name, quantity.ToString(), product.price.ToString(), Convert.ToInt32(price) * quantity);
-                        num++;
+                        item.Kvantitet += quantity;
+                        item.Summa = item.calculateTotalPrice();
+                        duplicateExist = true;                     
+                        break;
                     }
                 }
-                else
+                if(!duplicateExist) //Om produkten inte är tillagd läggs den till här
                 {
-                    MessageBox.Show("Inventory does not have that amount of that product");
+                    OrderItem orderitem = new OrderItem { Namn = product.Namn, Product = product, Kvantitet = quantity, Pris = product.Pris, Summa = quantity * product.Pris};
+                    OneOrder.Add(orderitem);             
                 }
+                
+                totalOrdersPrice += product.Pris * Convert.ToDouble(quantity);
+                totalProducts += quantity;
+                product.Kvantitet -= quantity;
+                product.Sålda += quantity;
+
             }
             else
             {
-                MessageBox.Show("Please enter a valid quantity");
+                MessageBox.Show("Det finns inte " + quantity + " av den produkten");
             }
-              
+                      
+            inv.UpdateJsonFile();
+            RefreshGrids();
         }
 
-        private void customerGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void newBtn_Click(object sender, EventArgs e) //Godkänn order knapp
         {
-            if(customerGrid.RowCount > 1)
+            if(OneOrder.Count > 0)
             {
-                nameText.Text = UC_Customers.customerList[customerGrid.CurrentCell.RowIndex].name;
-                idText.Text = UC_Customers.customerList[customerGrid.CurrentCell.RowIndex].id;
+               
+                    DateTime date = datePicker.Value;
+                    Customer customer = UC_Customers.customerList[customerGrid.CurrentCell.RowIndex];
+                        
+                    Order order = new Order { Id = GenerateId.GenerateUniqueId(GenerateId.UsedOrderIds), Customer = customer, Datum = date, OrderList = OneOrder, Summa = totalOrdersPrice, Produkter = totalProducts };
+                    OrdersList.Add(order);
+                            
+                    inv.CalculateSoldItems();
+
+                            //Updaterar alla json filer och refreshar alla grids
+                    UpdateJsonFile();
+                    inv.UpdateJsonFile();
+                    cus.UpdateJsonFile();
+                    RefreshGrids();
+
+                    //För att undvika att sätta till tom lista
+                    orderGrid.DataSource = null;
+                    OneOrder.Clear();
+                orderGrid.DataSource = OneOrder;
+                totalOrdersPrice = 0;
+                totalProducts = 0;
+                
             }
+            else
+            {
+                MessageBox.Show("Du måste lägga till minst en produkt");
+            }
+        }
+
+        private void customerGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            nameText.Text = UC_Customers.customerList[customerGrid.CurrentCell.RowIndex].Namn;
+            idText.Text = UC_Customers.customerList[customerGrid.CurrentCell.RowIndex].Id.ToString();
+        }
+
+        private bool CheckForDuplicateId(int id) //Kollar om order med det id redan finns
+        {
+            foreach(Order order in OrdersList)
+            {
+                if(order.Id == id)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

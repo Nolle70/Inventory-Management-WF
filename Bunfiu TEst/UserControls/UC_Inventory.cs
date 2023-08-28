@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -9,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_App;
 using Inventory_App.UserControls;
+using Inventory_App.Classes;
+
 
 
 namespace Bunfiu_TEst.UserControls
@@ -16,14 +20,42 @@ namespace Bunfiu_TEst.UserControls
     public partial class UC_Inventory : UserControl
     {
         public static List<Product> inventoryList = new List<Product>();
-        public static DataTable productsTable = new DataTable();
-        public static List<TopProduct> topProducts = new List<TopProduct>();
-
+        public string path = @"C:\Users\Noel Nevrén\Desktop\Saker\Code\Projects in VS\Bunfiu TEst\Bunfiu TEst\Json\products.json";
 
         public UC_Inventory()
         {
             InitializeComponent();
-            
+            RefreshInventoryGrid();
+        }
+
+        public void LoadInventoryData()
+        {
+            string jsonData = File.ReadAllText(path);
+            inventoryList = JSONUtility.DeserializeListFromJson<Product>(jsonData);
+            GenerateId.LoadProductIds(inventoryList);
+
+        }
+        public void UpdateJsonFile()
+        {
+            File.WriteAllText(path, JSONUtility.SerializeListToJson(inventoryList));
+        }
+
+        private void RefreshInventoryGrid()
+        {
+            LoadInventoryData();
+            CalculateSoldItems();
+            inventoryGrid.DataSource = inventoryList;
+        }
+
+        public void CalculateSoldItems()
+        {
+            foreach (Order order in UC_Orders.OrdersList)
+            {
+                foreach (OrderItem item in order.OrderList)
+                {
+                    item.Product.Sålda += item.Kvantitet;      
+                }
+            }
         }
 
         private void newBtn_Click(object sender, EventArgs e)
@@ -36,146 +68,106 @@ namespace Bunfiu_TEst.UserControls
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            if (nameText.Text != "" && priceText.Text != "" && quantityText.Text != "" &&
-               nameText.Text != "Name..." && priceText.Text != "Price..." && quantityText.Text != "Quantity..."
-               && selectBox.Text != "Select..." && selectBox.SelectedIndex != -1)
+            if (nameText.Text != "" && priceText.Text != "" && quantityText.Text != "" && selectBox.SelectedIndex != -1)
             {
                 string name = nameText.Text;
-                string price = priceText.Text;
-                int quantity = Convert.ToInt32(quantityText.Text);
-                string category = (string)selectBox.SelectedItem;
+                double price = Convert.ToDouble(priceText.Text);
+                long quantity = Convert.ToInt64(quantityText.Text);
                 int index = selectBox.SelectedIndex;
+                Product pro = new Product { Namn = name, Pris = price, Kvantitet = quantity, Kategori = (Categories)index, Sålda = 0, Id = GenerateId.GenerateUniqueId(GenerateId.UsedProductIds)};
+                inventoryList.Add(pro);
 
-                inventoryList.Add(new Product(name, price, quantity, (Categories)index));
-                productsTable.Rows.Add(name, price, quantity, category);
-
-                topProducts.Add(new TopProduct(name, 0));
-
+                UpdateJsonFile();
+                RefreshInventoryGrid();
                 newBtn_Click(sender, e);
 
             }
             else
             {
-                MessageBox.Show("Please enter in all fields");
+                MessageBox.Show("Fyll i alla fält");
             }
         }
 
         private void editBtn_Click(object sender, EventArgs e)
         {
             string name = nameText.Text;
-            string price = priceText.Text;
-            string quantity = quantityText.Text;
-            string category = (string)selectBox.SelectedItem;
+            double price = Convert.ToDouble(priceText.Text);
+            long quantity = Convert.ToInt64(quantityText.Text);
             int selected = selectBox.SelectedIndex;
-
 
 
             if (inventoryGrid.CurrentCell != null)
             {
                 int index = inventoryGrid.CurrentCell.RowIndex;
-                productsTable.Rows[index].Delete();
-                productsTable.Rows.Add(name, price, quantity, category);
-                inventoryList[index].name = name;
-                inventoryList[index].price = price;
-                inventoryList[index].quantity = Convert.ToInt32(quantity);
-                inventoryList[index].category = (Categories)selected;
+                
+                inventoryList[index].Namn = name;
+                inventoryList[index].Pris = price;
+                inventoryList[index].Kvantitet = quantity;
+                inventoryList[index].Kategori = (Categories)selected;
             }
+
+            UpdateJsonFile();
+            RefreshInventoryGrid();
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             if (inventoryGrid.CurrentCell != null)
             {
-                int index = inventoryGrid.CurrentCell.RowIndex;
-                productsTable.Rows[index].Delete();
+                int index = inventoryGrid.CurrentCell.RowIndex;            
                 inventoryList.RemoveAt(index);
+                UpdateJsonFile(); 
+                RefreshInventoryGrid();    
             }
             else
             {
-                MessageBox.Show("Please choose a valid cell to delete");
+                MessageBox.Show("Välj en rad innan du raderar");
             }
         }
 
         private void inventoryGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
+            if(inventoryGrid.Rows.Count > 0)
             {
-                int index = (int)inventoryList[inventoryGrid.CurrentCell.RowIndex].category;
-                nameText.Text = inventoryList[inventoryGrid.CurrentCell.RowIndex].name;
-                priceText.Text = inventoryList[inventoryGrid.CurrentCell.RowIndex].price;
-                quantityText.Text = inventoryList[inventoryGrid.CurrentCell.RowIndex].quantity.ToString();
-                selectBox.SelectedIndex = index;
+                try
+                {
+                    int index = (int)inventoryList[inventoryGrid.CurrentCell.RowIndex].Kategori;
+                    nameText.Text = inventoryList[inventoryGrid.CurrentCell.RowIndex].Namn;
+                    priceText.Text = inventoryList[inventoryGrid.CurrentCell.RowIndex].Pris.ToString();
+                    quantityText.Text = inventoryList[inventoryGrid.CurrentCell.RowIndex].Kvantitet.ToString();
+                    selectBox.SelectedIndex = index;
 
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine("There hase been an error: " + error);
-            }
+                }
+                catch (Exception error)
+                {
+                    Console.WriteLine("Det har uppstått ett fel: " + error);
+                }
+            }          
         }
 
-        public void UC_Inventory_Load(object sender, EventArgs e)
-        {
-            LoadInventoryGrid();
-            
-            inventoryGrid.DataSource = productsTable;     
-        }
+         private void searchBox_TextChanged(object sender, EventArgs e)
+         {
+            List<Product> FilteredList = new List<Product>();
 
-        public static void LoadInventoryGrid()
-        {
-            if (productsTable.Columns.Count == 0)
-            {
-                productsTable.Columns.Add("Name");
-                productsTable.Columns.Add("Price");
-                productsTable.Columns.Add("Quantity", typeof(int));
-                productsTable.Columns.Add("Category");
-                inventoryList.Add(new Product("Mobil", "399", 10, Categories.Electronics));
-                productsTable.Rows.Add("Mobil", "399$", 10, "Electronics");
-                inventoryList.Add(new Product("Alvedon", "18", 23, Categories.Pharmacy));
-                productsTable.Rows.Add("Alvedon", "18$", 23, "Pharmacy");
-                inventoryList.Add(new Product("Äpple", "1", 1000, Categories.Grocery));
-                productsTable.Rows.Add("Äpple", "1$", 1000, "Grocery");
-                topProducts.Add(new TopProduct("Mobil", 1));
-                topProducts.Add(new TopProduct("Alvedon", 2));
-                topProducts.Add(new TopProduct("Äpple", 2));
-            }
-        }
-
-        private void searchBox_TextChanged(object sender, EventArgs e)
-        {
-            int count;
-
-            if(searchBox.Text == "")
-            {
-
-                count = 0;
-                productsTable.Clear();
-
+             if(searchBox.Text == "")
+             {
+                inventoryGrid.DataSource = inventoryList;
+             }
+             else
+             {
                 foreach (Product pro in inventoryList)
-                {
-                    int index = (int)pro.category;
-                    productsTable.Rows.Add(pro.name, pro.price, pro.quantity, selectBox.Items[index]);
-
-                    count++;
-                }
+                 {
+                     if(pro.Namn.Length >= searchBox.Text.Length)
+                     {
+                         if (pro.Namn.Substring(0, searchBox.Text.Length).ToLower() == searchBox.Text.ToLower())
+                         {
+                            FilteredList.Add(pro);
+                         }
+                     }
+                 }
+                inventoryGrid.DataSource = FilteredList;
             }
-            else
-            {
-                int index;
-                productsTable.Clear();
-
-                foreach(Product pro in inventoryList)
-                {
-                    if(pro.name.Length >= searchBox.Text.Length)
-                    {
-                        if (pro.name.Substring(0, searchBox.Text.Length).ToLower() == searchBox.Text.ToLower())
-                        {
-                            index = (int)pro.category;
-                            productsTable.Rows.Add(pro.name, pro.price, pro.quantity, selectBox.Items[index]);
-                        }
-                    }
-                }
-            }
-        }
+         }
 
 
 

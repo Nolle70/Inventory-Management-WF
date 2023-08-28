@@ -1,4 +1,4 @@
-﻿namespace Inventory_App.UserControls
+﻿namespace Inventory_App.UserControls3
 {
     partial class UC_viewOrders
     {
@@ -50,7 +50,6 @@
             this.guna2GradientPanel1.Location = new System.Drawing.Point(155, 75);
             this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
-            this.guna2GradientPanel1.ShadowDecoration.Parent = this.guna2GradientPanel1;
             this.guna2GradientPanel1.Size = new System.Drawing.Size(634, 396);
             this.guna2GradientPanel1.TabIndex = 5;
             // 
@@ -60,21 +59,15 @@
             this.viewOrdersGrid.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.viewOrdersGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.viewOrdersGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.viewOrdersGrid.BackgroundColor = System.Drawing.Color.White;
-            this.viewOrdersGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.viewOrdersGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.viewOrdersGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.Cyan;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Cyan;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.viewOrdersGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.viewOrdersGrid.ColumnHeadersHeight = 30;
-            this.viewOrdersGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -83,7 +76,6 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.viewOrdersGrid.DefaultCellStyle = dataGridViewCellStyle3;
-            this.viewOrdersGrid.EnableHeadersVisualStyles = false;
             this.viewOrdersGrid.GridColor = System.Drawing.Color.Silver;
             this.viewOrdersGrid.Location = new System.Drawing.Point(17, 3);
             this.viewOrdersGrid.MultiSelect = false;
@@ -101,10 +93,8 @@
             this.viewOrdersGrid.RowHeadersWidth = 25;
             this.viewOrdersGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.viewOrdersGrid.RowTemplate.Height = 25;
-            this.viewOrdersGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.viewOrdersGrid.Size = new System.Drawing.Size(599, 379);
             this.viewOrdersGrid.TabIndex = 2;
-            this.viewOrdersGrid.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.viewOrdersGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.viewOrdersGrid.ThemeStyle.AlternatingRowsStyle.Font = null;
             this.viewOrdersGrid.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
