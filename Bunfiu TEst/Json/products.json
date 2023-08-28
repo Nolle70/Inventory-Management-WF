@@ -1,1 +1,35 @@
-[]
+[
+  
+  {
+    "Namn": "\u00C4gg",
+    "Kategori": 2,
+    "S\u00E5lda": 6,
+    "Pris": 10,
+    "Kvantitet": 94,
+    "Id": 136524
+  },
+  {
+    "Namn": "Ipren",
+    "Kategori": 3,
+    "S\u00E5lda": 14,
+    "Pris": 100,
+    "Kvantitet": 36,
+    "Id": 600868
+  },
+  {
+    "Namn": "Dator",
+    "Kategori": 0,
+    "S\u00E5lda": 2,
+    "Pris": 1000,
+    "Kvantitet": 122,
+    "Id": 582618
+  },
+  {
+    "Namn": "Rolex",
+    "Kategori": 4,
+    "S\u00E5lda": 0,
+    "Pris": 10000,
+    "Kvantitet": 10,
+    "Id": 414140
+  }
+]

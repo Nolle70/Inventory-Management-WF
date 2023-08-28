@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.IO;
 
 namespace Inventory_App
 {
@@ -23,6 +24,17 @@ namespace Inventory_App
         public static string SerializeListToJson<T>(List<T> list)
         {
             return JsonSerializer.Serialize(list);
+        }
+        public static List<T> GetData<T>(string path, List<T> list)
+        {
+            string jsonData = File.ReadAllText(path);
+            return new List<T>(DeserializeListFromJson<T>(jsonData));
+        }
+
+        public static void UpdateJsonFile<T>(string path, List<T> list)
+        {
+            string jsonData = SerializeListToJson(list);
+            File.WriteAllText(path, jsonData);
         }
 
 

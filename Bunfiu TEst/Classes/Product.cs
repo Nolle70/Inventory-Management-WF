@@ -52,6 +52,18 @@ namespace Inventory_App
 
         }
 
+        public bool InStock()
+        {
+            if(Kvantitet > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
     }
 }

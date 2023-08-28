@@ -17,46 +17,42 @@ namespace Bunfiu_TEst.UserControls
 {
     public partial class UC_Orders : UserControl
     {
-        public static List<OrderItem> OneOrder = new List<OrderItem>();
+        private static List<OrderItem> OneOrder = new List<OrderItem>();
 
         public static List<Order> OrdersList = new List<Order>();
 
-        UC_Inventory inv = new UC_Inventory();
-        UC_Customers cus = new UC_Customers();
-
-        public static double totalOrdersPrice = 0;
-        public static int totalSoldProducts = 0;
-        public static int totalProducts = 0;
-        string path = @"C:\Users\Noel Nevrén\Desktop\Saker\Code\Projects in VS\Bunfiu TEst\Bunfiu TEst\Json\orders.json";
+        private static double totalOrdersPrice = 0;
+        private static int totalProducts = 0;
+        private static string path = @"C:\Users\Noel Nevrén\Desktop\Saker\Code\Projects in VS\Bunfiu TEst\Bunfiu TEst\Json\orders.json";
         public UC_Orders()
         {
             InitializeComponent();
-
             RefreshGrids();
             datePicker.Value = DateTime.Today;
-        }
-        
-        public void LoadOrderData()
-        {
-            string jsonData = File.ReadAllText(path);
-            OrdersList = JSONUtility.DeserializeListFromJson<Order>(jsonData);
-            GenerateId.LoadOrderIds(OrdersList);
-        }
-        public void UpdateJsonFile()
-        {
-            File.WriteAllText(path, JSONUtility.SerializeListToJson(OrdersList));
+            orderGrid.Enabled = false;
         }
 
+        public static void LoadOrderData()
+        {
+            OrdersList = JSONUtility.GetData(path, OrdersList);
+            GenerateId.LoadIds(OrdersList, GenerateId.UsedProductIds);
+        }
+        public static void UpdateJsonFile()
+        {
+            JSONUtility.UpdateJsonFile(path, OrdersList);
+        }
         private void RefreshGrids() //Hämtar all data från json och refreshar grids
         { 
             LoadOrderData();
             orderGrid.DataSource = null;
             orderGrid.DataSource = OneOrder;
-            inv.LoadInventoryData();
+            UC_Inventory.LoadInventoryData();
             inventoryGrid.DataSource = UC_Inventory.inventoryList;
-            cus.LoadCustomerData();
+            UC_Customers.LoadCustomerData();
+            Customer.LoadOrders();
             customerGrid.DataSource = UC_Customers.customerList;
-            if (orderGrid.Columns.Count > 4)
+
+            if (orderGrid.Columns.Count > 4) //Tar bort produkt kolumnen
             {
                 foreach(DataGridViewColumn column in orderGrid.Columns)
                 {
@@ -71,40 +67,42 @@ namespace Bunfiu_TEst.UserControls
 
         private void addItem_Click(object sender, EventArgs e)
         {
-            int quantity = Convert.ToInt32(quantityText.Text);
-            Product product = UC_Inventory.inventoryList[inventoryGrid.CurrentCell.RowIndex]; //Hämtar vald produkt
-            bool duplicateExist = false;
-            if (product.Kvantitet >= quantity)
+            if(int.TryParse(quantityText.Text, out int quantity))
             {
-                foreach(OrderItem item in OneOrder) // Kollar om den produkten redan finns tillagd isåfall ökar bara kvantiteten för den orderitem
+                Product product = UC_Inventory.inventoryList[inventoryGrid.CurrentCell.RowIndex]; //Hämtar vald produkt
+                if (product.InStock())
                 {
-                    if(item.Product.Namn == product.Namn)
-                    {
-                        item.Kvantitet += quantity;
-                        item.Summa = item.calculateTotalPrice();
-                        duplicateExist = true;                     
-                        break;
-                    }
-                }
-                if(!duplicateExist) //Om produkten inte är tillagd läggs den till här
-                {
-                    OrderItem orderitem = new OrderItem { Namn = product.Namn, Product = product, Kvantitet = quantity, Pris = product.Pris, Summa = quantity * product.Pris};
-                    OneOrder.Add(orderitem);             
-                }
-                
-                totalOrdersPrice += product.Pris * Convert.ToDouble(quantity);
-                totalProducts += quantity;
-                product.Kvantitet -= quantity;
-                product.Sålda += quantity;
+                        if (ExistingItem(product, out OrderItem item)) //Om produkten redan finns uppdateras pris samt kvantiteten
+                        {
+                            item.AddQuantity(quantity);
+                            item.calculateTotalPrice();
+                        }
+                        else //Om produkten inte är tillagd läggs den till här
+                        {
+                            OrderItem orderitem = new OrderItem { Namn = product.Namn, Product = product, Kvantitet = quantity, Pris = product.Pris, Summa = quantity * product.Pris, Id = product.Id };
+                            OneOrder.Add(orderitem);
+                        }
 
+                        totalOrdersPrice += product.Pris * Convert.ToDouble(quantity);
+                        totalProducts += quantity;
+                        product.Kvantitet -= quantity;
+                        product.Sålda += quantity;
+                    
+                    }
+                
+                else
+                {
+                    MessageBox.Show("Det finns inte " + quantity + " av den produkten");
+                }
+
+                UC_Inventory.UpdateJsonFile();
+                RefreshGrids();
             }
             else
             {
-                MessageBox.Show("Det finns inte " + quantity + " av den produkten");
+                MessageBox.Show("Ange siffor");
             }
-                      
-            inv.UpdateJsonFile();
-            RefreshGrids();
+           
         }
 
         private void newBtn_Click(object sender, EventArgs e) //Godkänn order knapp
@@ -112,23 +110,24 @@ namespace Bunfiu_TEst.UserControls
             if(OneOrder.Count > 0)
             {
                
-                    DateTime date = datePicker.Value;
-                    Customer customer = UC_Customers.customerList[customerGrid.CurrentCell.RowIndex];
+                DateTime date = datePicker.Value;
+                Customer customer = UC_Customers.customerList[customerGrid.CurrentCell.RowIndex];
+                customer.AddOrder();
                         
-                    Order order = new Order { Id = GenerateId.GenerateUniqueId(GenerateId.UsedOrderIds), Customer = customer, Datum = date, OrderList = OneOrder, Summa = totalOrdersPrice, Produkter = totalProducts };
-                    OrdersList.Add(order);
+                Order order = new Order { Id = GenerateId.GenerateUniqueId(GenerateId.UsedOrderIds), Customer = customer, Datum = date, OrderList = OneOrder, Summa = totalOrdersPrice, Produkter = totalProducts };
+                OrdersList.Add(order);
                             
-                    inv.CalculateSoldItems();
+                UC_Inventory.CalculateSoldItems();
 
-                            //Updaterar alla json filer och refreshar alla grids
-                    UpdateJsonFile();
-                    inv.UpdateJsonFile();
-                    cus.UpdateJsonFile();
-                    RefreshGrids();
+                //Updaterar alla json filer och refreshar alla grids
+                UpdateJsonFile();
+                UC_Inventory.UpdateJsonFile();
+                UC_Customers.UpdateJsonFile();
+                RefreshGrids();
 
-                    //För att undvika att sätta till tom lista
-                    orderGrid.DataSource = null;
-                    OneOrder.Clear();
+                //För att undvika att sätta till tom lista
+                orderGrid.DataSource = null;
+                OneOrder.Clear();
                 orderGrid.DataSource = OneOrder;
                 totalOrdersPrice = 0;
                 totalProducts = 0;
@@ -146,16 +145,19 @@ namespace Bunfiu_TEst.UserControls
             idText.Text = UC_Customers.customerList[customerGrid.CurrentCell.RowIndex].Id.ToString();
         }
 
-        private bool CheckForDuplicateId(int id) //Kollar om order med det id redan finns
+        private bool ExistingItem(Product product, out OrderItem itm)
         {
-            foreach(Order order in OrdersList)
+            foreach(OrderItem item in OneOrder)
             {
-                if(order.Id == id)
+                if(item.Product.Id == product.Id)
                 {
+                    itm = item;
                     return true;
                 }
             }
+            itm = null;
             return false;
         }
+
     }
 }

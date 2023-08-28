@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Inventory_App
 {
-    public abstract class OrderBaseClass //Basklass för orderitem och order klasserna
+    public abstract class OrderBaseClass : Classes.IdInterface //Basklass för orderitem och order klasserna
     {
+        public int Id { get; set; }
         public double Summa { get; set; }
 
         public abstract double calculateTotalPrice();

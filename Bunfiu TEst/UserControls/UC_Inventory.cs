@@ -13,33 +13,27 @@ using Inventory_App;
 using Inventory_App.UserControls;
 using Inventory_App.Classes;
 
-
-
 namespace Bunfiu_TEst.UserControls
 {
     public partial class UC_Inventory : UserControl
     {
         public static List<Product> inventoryList = new List<Product>();
-        public string path = @"C:\Users\Noel Nevrén\Desktop\Saker\Code\Projects in VS\Bunfiu TEst\Bunfiu TEst\Json\products.json";
+        private static string path = @"C:\Users\Noel Nevrén\Desktop\Saker\Code\Projects in VS\Bunfiu TEst\Bunfiu TEst\Json\products.json";
 
         public UC_Inventory()
         {
             InitializeComponent();
             RefreshInventoryGrid();
         }
-
-        public void LoadInventoryData()
+        public static void LoadInventoryData()
         {
-            string jsonData = File.ReadAllText(path);
-            inventoryList = JSONUtility.DeserializeListFromJson<Product>(jsonData);
-            GenerateId.LoadProductIds(inventoryList);
-
+            inventoryList = JSONUtility.GetData(path, inventoryList);
+            GenerateId.LoadIds(inventoryList, GenerateId.UsedProductIds);
         }
-        public void UpdateJsonFile()
+        public static void UpdateJsonFile()
         {
-            File.WriteAllText(path, JSONUtility.SerializeListToJson(inventoryList));
+            JSONUtility.UpdateJsonFile(path, inventoryList);
         }
-
         private void RefreshInventoryGrid()
         {
             LoadInventoryData();
@@ -47,7 +41,7 @@ namespace Bunfiu_TEst.UserControls
             inventoryGrid.DataSource = inventoryList;
         }
 
-        public void CalculateSoldItems()
+        public static void CalculateSoldItems()
         {
             foreach (Order order in UC_Orders.OrdersList)
             {
@@ -74,13 +68,13 @@ namespace Bunfiu_TEst.UserControls
                 double price = Convert.ToDouble(priceText.Text);
                 long quantity = Convert.ToInt64(quantityText.Text);
                 int index = selectBox.SelectedIndex;
+
                 Product pro = new Product { Namn = name, Pris = price, Kvantitet = quantity, Kategori = (Categories)index, Sålda = 0, Id = GenerateId.GenerateUniqueId(GenerateId.UsedProductIds)};
                 inventoryList.Add(pro);
 
                 UpdateJsonFile();
                 RefreshInventoryGrid();
                 newBtn_Click(sender, e);
-
             }
             else
             {
@@ -94,7 +88,6 @@ namespace Bunfiu_TEst.UserControls
             double price = Convert.ToDouble(priceText.Text);
             long quantity = Convert.ToInt64(quantityText.Text);
             int selected = selectBox.SelectedIndex;
-
 
             if (inventoryGrid.CurrentCell != null)
             {

@@ -83,12 +83,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\GenerateId.cs" />
+    <Compile Include="Classes\IdInterface.cs" />
     <Compile Include="Classes\OrderBaseClass.cs" />
     <Compile Include="Classes\JSONUtility.cs" />
     <Compile Include="Classes\Category.cs" />
     <Compile Include="Classes\Order.cs" />
     <Compile Include="Classes\OrderItem.cs" />
     <Compile Include="Classes\Customer.cs" />
+    <Compile Include="Classes\OrderManager.cs" />
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

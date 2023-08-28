@@ -43,6 +43,11 @@ namespace Inventory_App.UserControls
             return Kvantitet;
         }
 
+        public void AddQuantity(int quantity)
+        {
+            Kvantitet += quantity;
+        }
+
 
 
 

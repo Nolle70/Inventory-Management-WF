@@ -9,15 +9,16 @@ using System.Text.Json.Serialization;
 
 namespace Inventory_App.Classes
 {
-    public class GenerateId
+    public class GenerateId : IdInterface
     {
+        public int Id { get; set; }
+
         public static HashSet<int> UsedProductIds = new HashSet<int>();
         public static HashSet<int> UsedCustomerIds = new HashSet<int>();
         public static HashSet<int> UsedOrderIds = new HashSet<int>();
 
         protected const int MaxProductId = 999999;
         protected static Random RandomNumber = new Random();
-        public int Id { get; set; }   
 
         public static int GenerateUniqueId(HashSet<int> usedIds)
         {
@@ -31,6 +32,17 @@ namespace Inventory_App.Classes
             return randomId;
         }
 
+        public static void LoadIds<T>(List<T> list, HashSet<int> UsedIds) where T : IdInterface //Istället för att använda tre separata metoder för varje klass
+        { 
+            UsedIds.Clear();
+            foreach(T item in list)
+            {
+                UsedIds.Add(item.Id);
+            }
+            
+        }
+
+        /*
         public static void LoadProductIds(List<Product> productList)
         {
             UsedProductIds.Clear();
@@ -56,6 +68,7 @@ namespace Inventory_App.Classes
                 UsedProductIds.Add(order.Id);
             }
         }
+        */
 
     }
 }

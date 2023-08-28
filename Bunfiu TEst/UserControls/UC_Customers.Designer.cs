@@ -286,7 +286,6 @@
             this.Controls.Add(this.guna2GradientPanel1);
             this.Name = "UC_Customers";
             this.Size = new System.Drawing.Size(942, 560);
-            this.Load += new System.EventHandler(this.UC_Customers_Load);
             this.guna2GradientPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customerGrid)).EndInit();
             this.ResumeLayout(false);

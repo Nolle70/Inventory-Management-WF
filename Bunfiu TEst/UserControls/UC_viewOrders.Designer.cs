@@ -34,6 +34,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.viewOrdersGrid = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.searchBox = new Guna.UI2.WinForms.Guna2TextBox();
+            this.searchBtn = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewOrdersGrid)).BeginInit();
             this.SuspendLayout();
@@ -47,7 +49,7 @@
             this.guna2GradientPanel1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GradientPanel1.ForeColor = System.Drawing.Color.DarkRed;
             this.guna2GradientPanel1.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.guna2GradientPanel1.Location = new System.Drawing.Point(155, 75);
+            this.guna2GradientPanel1.Location = new System.Drawing.Point(161, 116);
             this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.Size = new System.Drawing.Size(634, 396);
@@ -117,14 +119,65 @@
             this.viewOrdersGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.viewOrdersGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
+            // searchBox
+            // 
+            this.searchBox.BackColor = System.Drawing.Color.Transparent;
+            this.searchBox.BorderColor = System.Drawing.Color.Cyan;
+            this.searchBox.BorderRadius = 20;
+            this.searchBox.BorderThickness = 2;
+            this.searchBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.searchBox.DefaultText = "";
+            this.searchBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.Red;
+            this.searchBox.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.searchBox.FocusedState.BorderColor = System.Drawing.Color.LightSkyBlue;
+            this.searchBox.FocusedState.PlaceholderForeColor = System.Drawing.Color.LightSkyBlue;
+            this.searchBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBox.ForeColor = System.Drawing.Color.Cyan;
+            this.searchBox.HoverState.BorderColor = System.Drawing.Color.LightSkyBlue;
+            this.searchBox.IconRightOffset = new System.Drawing.Point(5, 0);
+            this.searchBox.IconRightSize = new System.Drawing.Size(30, 30);
+            this.searchBox.Location = new System.Drawing.Point(161, 54);
+            this.searchBox.Margin = new System.Windows.Forms.Padding(5);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.PasswordChar = '\0';
+            this.searchBox.PlaceholderForeColor = System.Drawing.Color.Cyan;
+            this.searchBox.PlaceholderText = "Sök efter produkt id här...";
+            this.searchBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.searchBox.SelectedText = "";
+            this.searchBox.ShadowDecoration.Depth = 15;
+            this.searchBox.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(5, 5, 0, 0);
+            this.searchBox.Size = new System.Drawing.Size(470, 45);
+            this.searchBox.TabIndex = 9;
+            this.searchBox.TextOffset = new System.Drawing.Point(5, 0);
+            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Animated = true;
+            this.searchBtn.AutoRoundedCorners = true;
+            this.searchBtn.BackColor = System.Drawing.SystemColors.Control;
+            this.searchBtn.BorderRadius = 21;
+            this.searchBtn.FillColor = System.Drawing.Color.Cyan;
+            this.searchBtn.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBtn.ForeColor = System.Drawing.Color.White;
+            this.searchBtn.HoverState.FillColor = System.Drawing.Color.LightSkyBlue;
+            this.searchBtn.ImageSize = new System.Drawing.Size(30, 30);
+            this.searchBtn.Location = new System.Drawing.Point(639, 54);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(156, 45);
+            this.searchBtn.TabIndex = 10;
+            this.searchBtn.Text = "Sök";
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
             // UC_viewOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.searchBtn);
+            this.Controls.Add(this.searchBox);
             this.Controls.Add(this.guna2GradientPanel1);
             this.Name = "UC_viewOrders";
             this.Size = new System.Drawing.Size(942, 560);
-            this.Load += new System.EventHandler(this.UC_viewOrders_Load);
             this.guna2GradientPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.viewOrdersGrid)).EndInit();
             this.ResumeLayout(false);
@@ -135,5 +188,7 @@
 
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
         private Guna.UI2.WinForms.Guna2DataGridView viewOrdersGrid;
+        private Guna.UI2.WinForms.Guna2TextBox searchBox;
+        private Guna.UI2.WinForms.Guna2Button searchBtn;
     }
 }

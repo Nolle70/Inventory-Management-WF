@@ -9,8 +9,7 @@ using System.Windows.Forms;
 namespace Inventory_App.UserControls
 {
     public class Order : OrderBaseClass //Klass för varje enskild order
-    {
-        public int Id { get; set; }
+    {    
         public Customer Customer { get; set; }
         public DateTime Datum { get; set; }
         public List<OrderItem> OrderList { get; set; } = new List<OrderItem>();

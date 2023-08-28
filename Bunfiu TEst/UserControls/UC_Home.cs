@@ -16,12 +16,12 @@ namespace Bunfiu_TEst.UserControls
     public partial class UC_Home : UserControl
     {
 
-        public int totalSoldProducts = 0;
+        private int totalSoldProducts = 0;
         public UC_Home()
         {
             InitializeComponent();
             UC_Orders temp = new UC_Orders();
-            temp.LoadOrderData();//Hämtar order datan från json
+            UC_Orders.LoadOrderData(); //Hämtar order datan från json
             LoadProductChart();
             LoadTopProducts();    
         }
@@ -67,7 +67,7 @@ namespace Bunfiu_TEst.UserControls
             soldProducts.Text = getTotalsoldProducts().ToString();
         }
 
-        public double getTotalRevenue()
+        private double getTotalRevenue()
         {
             double totalRevenue = 0;
             foreach(Order order in UC_Orders.OrdersList)
@@ -77,12 +77,12 @@ namespace Bunfiu_TEst.UserControls
             return totalRevenue;
         }
 
-        public double getTotalProfit()
+        private double getTotalProfit()
         {
             return Math.Round(getTotalRevenue() * 0.20);   
         }
 
-        public int getTotalsoldProducts()
+        private int getTotalsoldProducts()
         {
             foreach(Order order in UC_Orders.OrdersList)
             {

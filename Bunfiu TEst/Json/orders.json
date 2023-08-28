@@ -1,3 +1,105 @@
 [
-
+  
+  {
+    "Customer": {
+      "Namn": "Noel",
+      "Telefon": "23233",
+      "Ordrar": 1,
+      "Id": 926128
+    },
+    "Datum": "2023-08-28T00:00:00+02:00",
+    "OrderList": [
+      {
+        "Namn": "\u00C4gg",
+        "Pris": 10,
+        "Product": {
+          "Namn": "\u00C4gg",
+          "Kategori": 2,
+          "S\u00E5lda": 13,
+          "Pris": 10,
+          "Kvantitet": 96,
+          "Id": 136524
+        },
+        "Kvantitet": 3,
+        "Id": 136524,
+        "Summa": 30
+      }
+    ],
+    "Produkter": 3,
+    "Id": 396767,
+    "Summa": 30
+  },
+  {
+    "Customer": {
+      "Namn": "Noel",
+      "Telefon": "23233",
+      "Ordrar": 2,
+      "Id": 926128
+    },
+    "Datum": "2023-08-28T00:00:00+02:00",
+    "OrderList": [
+      {
+        "Namn": "Ipren",
+        "Pris": 100,
+        "Product": {
+          "Namn": "Ipren",
+          "Kategori": 3,
+          "S\u00E5lda": 37,
+          "Pris": 100,
+          "Kvantitet": 37,
+          "Id": 600868
+        },
+        "Kvantitet": 12,
+        "Id": 600868,
+        "Summa": 1200
+      },
+      {
+        "Namn": "Dator",
+        "Pris": 1000,
+        "Product": {
+          "Namn": "Dator",
+          "Kategori": 0,
+          "S\u00E5lda": 4,
+          "Pris": 1000,
+          "Kvantitet": 122,
+          "Id": 582618
+        },
+        "Kvantitet": 1,
+        "Id": 582618,
+        "Summa": 1000
+      }
+    ],
+    "Produkter": 13,
+    "Id": 244603,
+    "Summa": 2200
+  },
+  {
+    "Customer": {
+      "Namn": "Eva-lott",
+      "Telefon": "21313213",
+      "Ordrar": 1,
+      "Id": 653161
+    },
+    "Datum": "2023-08-28T00:00:00+02:00",
+    "OrderList": [
+      {
+        "Namn": "Ipren",
+        "Pris": 100,
+        "Product": {
+          "Namn": "Ipren",
+          "Kategori": 3,
+          "S\u00E5lda": 15,
+          "Pris": 100,
+          "Kvantitet": 36,
+          "Id": 600868
+        },
+        "Kvantitet": 1,
+        "Id": 600868,
+        "Summa": 100
+      }
+    ],
+    "Produkter": 1,
+    "Id": 578339,
+    "Summa": 100
+  }
 ]

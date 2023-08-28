@@ -50,7 +50,6 @@
             this.inventoryGrid = new Guna.UI2.WinForms.Guna2DataGridView();
             this.nameText = new Guna.UI2.WinForms.Guna2TextBox();
             this.idText = new Guna.UI2.WinForms.Guna2TextBox();
-            this.orderIdText = new Guna.UI2.WinForms.Guna2TextBox();
             this.datePicker = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.guna2GradientPanel3 = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.orderGrid = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -143,7 +142,6 @@
             this.customerGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.customerGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.customerGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customerGrid_CellClick);
-         
             // 
             // insertOrder
             // 
@@ -157,10 +155,10 @@
             this.insertOrder.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.insertOrder.Image = ((System.Drawing.Image)(resources.GetObject("insertOrder.Image")));
             this.insertOrder.ImageSize = new System.Drawing.Size(25, 25);
-            this.insertOrder.Location = new System.Drawing.Point(14, 488);
+            this.insertOrder.Location = new System.Drawing.Point(14, 504);
             this.insertOrder.Name = "insertOrder";
             this.insertOrder.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.insertOrder.Size = new System.Drawing.Size(218, 45);
+            this.insertOrder.Size = new System.Drawing.Size(242, 45);
             this.insertOrder.TabIndex = 6;
             this.insertOrder.Text = "Godkänn order";
             this.insertOrder.Click += new System.EventHandler(this.newBtn_Click);
@@ -287,7 +285,7 @@
             this.nameText.HoverState.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.nameText.IconRightOffset = new System.Drawing.Point(5, 0);
             this.nameText.IconRightSize = new System.Drawing.Size(30, 30);
-            this.nameText.Location = new System.Drawing.Point(14, 267);
+            this.nameText.Location = new System.Drawing.Point(14, 317);
             this.nameText.Margin = new System.Windows.Forms.Padding(5);
             this.nameText.Name = "nameText";
             this.nameText.PasswordChar = '\0';
@@ -297,7 +295,7 @@
             this.nameText.SelectedText = "";
             this.nameText.ShadowDecoration.Depth = 15;
             this.nameText.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.nameText.Size = new System.Drawing.Size(140, 45);
+            this.nameText.Size = new System.Drawing.Size(242, 45);
             this.nameText.TabIndex = 10;
             this.nameText.TextOffset = new System.Drawing.Point(5, 0);
             // 
@@ -322,7 +320,7 @@
             this.idText.HoverState.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.idText.IconRightOffset = new System.Drawing.Point(5, 0);
             this.idText.IconRightSize = new System.Drawing.Size(30, 30);
-            this.idText.Location = new System.Drawing.Point(164, 267);
+            this.idText.Location = new System.Drawing.Point(14, 379);
             this.idText.Margin = new System.Windows.Forms.Padding(5);
             this.idText.Name = "idText";
             this.idText.PasswordChar = '\0';
@@ -332,44 +330,9 @@
             this.idText.SelectedText = "";
             this.idText.ShadowDecoration.Depth = 15;
             this.idText.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.idText.Size = new System.Drawing.Size(68, 45);
+            this.idText.Size = new System.Drawing.Size(242, 45);
             this.idText.TabIndex = 11;
             this.idText.TextOffset = new System.Drawing.Point(5, 0);
-            // 
-            // orderIdText
-            // 
-            this.orderIdText.BackColor = System.Drawing.Color.Transparent;
-            this.orderIdText.BorderColor = System.Drawing.Color.LimeGreen;
-            this.orderIdText.BorderRadius = 20;
-            this.orderIdText.BorderThickness = 2;
-            this.orderIdText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.orderIdText.DefaultText = "";
-            this.orderIdText.DisabledState.BorderColor = System.Drawing.Color.White;
-            this.orderIdText.DisabledState.FillColor = System.Drawing.Color.White;
-            this.orderIdText.DisabledState.ForeColor = System.Drawing.Color.LimeGreen;
-            this.orderIdText.DisabledState.PlaceholderForeColor = System.Drawing.Color.LightGreen;
-            this.orderIdText.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.orderIdText.FocusedState.BorderColor = System.Drawing.Color.DarkGreen;
-            this.orderIdText.FocusedState.PlaceholderForeColor = System.Drawing.Color.LimeGreen;
-            this.orderIdText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.orderIdText.ForeColor = System.Drawing.Color.LimeGreen;
-            this.orderIdText.HoverState.BorderColor = System.Drawing.Color.DarkGreen;
-            this.orderIdText.HoverState.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.orderIdText.IconRightOffset = new System.Drawing.Point(5, 0);
-            this.orderIdText.IconRightSize = new System.Drawing.Size(30, 30);
-            this.orderIdText.Location = new System.Drawing.Point(14, 324);
-            this.orderIdText.Margin = new System.Windows.Forms.Padding(5);
-            this.orderIdText.Name = "orderIdText";
-            this.orderIdText.PasswordChar = '\0';
-            this.orderIdText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.orderIdText.PlaceholderText = "Order ID...";
-            this.orderIdText.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.orderIdText.SelectedText = "";
-            this.orderIdText.ShadowDecoration.Depth = 15;
-            this.orderIdText.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.orderIdText.Size = new System.Drawing.Size(218, 45);
-            this.orderIdText.TabIndex = 12;
-            this.orderIdText.TextOffset = new System.Drawing.Point(5, 0);
             // 
             // datePicker
             // 
@@ -379,11 +342,11 @@
             this.datePicker.FillColor = System.Drawing.Color.LimeGreen;
             this.datePicker.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.datePicker.Location = new System.Drawing.Point(14, 382);
+            this.datePicker.Location = new System.Drawing.Point(14, 441);
             this.datePicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.datePicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.datePicker.Name = "datePicker";
-            this.datePicker.Size = new System.Drawing.Size(218, 43);
+            this.datePicker.Size = new System.Drawing.Size(242, 43);
             this.datePicker.TabIndex = 13;
             this.datePicker.Value = new System.DateTime(2023, 2, 8, 11, 27, 40, 80);
             // 
@@ -529,7 +492,6 @@
             this.Controls.Add(this.quantityText);
             this.Controls.Add(this.guna2GradientPanel3);
             this.Controls.Add(this.datePicker);
-            this.Controls.Add(this.orderIdText);
             this.Controls.Add(this.idText);
             this.Controls.Add(this.nameText);
             this.Controls.Add(this.guna2HtmlLabel2);
@@ -561,7 +523,6 @@
         private Guna.UI2.WinForms.Guna2DataGridView inventoryGrid;
         private Guna.UI2.WinForms.Guna2TextBox nameText;
         private Guna.UI2.WinForms.Guna2TextBox idText;
-        private Guna.UI2.WinForms.Guna2TextBox orderIdText;
         private Guna.UI2.WinForms.Guna2DateTimePicker datePicker;
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel3;
         private Guna.UI2.WinForms.Guna2DataGridView orderGrid;

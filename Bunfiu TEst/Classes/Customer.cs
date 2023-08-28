@@ -12,22 +12,25 @@ namespace Inventory_App.UserControls
         public string Namn { get; set; }
         public string Telefon { get; set; }
 
-        public int ordrar;
-        public int Ordrar
+        public int Ordrar { get; set; }
+        public void AddOrder()
         {
-            get { return ordrar; }
-            
-            set
+            Ordrar += 1;
+        }
+
+        public static void LoadOrders()
+        {
+            foreach(Customer customer in UC_Customers.customerList)
             {
-                ordrar = 0;
-                foreach(Order order in Bunfiu_TEst.UserControls.UC_Orders.OrdersList) //Antal ordrar gjorda av denna customer
+                customer.Ordrar = 0;
+                foreach (Order order in Bunfiu_TEst.UserControls.UC_Orders.OrdersList) //Antal ordrar gjorda av denna customer
                 {
-                    if(order.Customer.Id == Id && order.Customer.Namn == Namn && order.Customer.Telefon == Telefon)
+                    if (order.Customer.Id == customer.Id)
                     {
-                        ordrar += 1;
+                        customer.Ordrar += 1;
                     }
-                }      
-            }
+                }
+            } 
         }
 
     }

@@ -17,23 +17,22 @@ namespace Inventory_App.UserControls
     public partial class UC_Customers : UserControl
     {
         public static List<Customer> customerList = new List<Customer>();
-        public string path = @"C:\Users\Noel Nevrén\Desktop\Saker\Code\Projects in VS\Bunfiu TEst\Bunfiu TEst\Json\customers.json";
-        Customer temp = new Customer();
+        private static string path = @"C:\Users\Noel Nevrén\Desktop\Saker\Code\Projects in VS\Bunfiu TEst\Bunfiu TEst\Json\customers.json";
         public UC_Customers()
         {
             InitializeComponent();
             RefreshCustomerGrid();
+            Customer.LoadOrders();
         }
 
-        public void LoadCustomerData()
+        public static void LoadCustomerData()
         {
-            string jsonData = File.ReadAllText(path);
-            customerList = JSONUtility.DeserializeListFromJson<Customer>(jsonData);
-            GenerateId.LoadCustomerIds(customerList);
+            customerList = JSONUtility.GetData(path, customerList);
+            GenerateId.LoadIds(customerList, GenerateId.UsedProductIds);
         }
-        public void UpdateJsonFile()
+        public static void UpdateJsonFile()
         {
-            File.WriteAllText(path, JSONUtility.SerializeListToJson(customerList));
+            JSONUtility.UpdateJsonFile(path, customerList);
         }
 
         private void RefreshCustomerGrid()
@@ -59,8 +58,7 @@ namespace Inventory_App.UserControls
 
                 UpdateJsonFile();
                 RefreshCustomerGrid();
-
-                newBtn_Click(sender, e);
+                newBtn_Click(sender, e); //Rensar alla fält
             }
             else
             {
@@ -99,17 +97,7 @@ namespace Inventory_App.UserControls
             }
             UpdateJsonFile();
             RefreshCustomerGrid();
-        }
-
-        public void UC_Customers_Load(object sender, EventArgs e)
-        {
-
-            
-
-        }
-
-       
-
+        }  
         private void customerGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
