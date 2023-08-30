@@ -37,19 +37,7 @@ namespace Bunfiu_TEst.UserControls
         private void RefreshInventoryGrid()
         {
             LoadInventoryData();
-            CalculateSoldItems();
             inventoryGrid.DataSource = inventoryList;
-        }
-
-        public static void CalculateSoldItems()
-        {
-            foreach (Order order in UC_Orders.OrdersList)
-            {
-                foreach (OrderItem item in order.OrderList)
-                {
-                    item.Product.Sålda += item.Kvantitet;      
-                }
-            }
         }
 
         private void newBtn_Click(object sender, EventArgs e)
@@ -64,17 +52,23 @@ namespace Bunfiu_TEst.UserControls
         {
             if (nameText.Text != "" && priceText.Text != "" && quantityText.Text != "" && selectBox.SelectedIndex != -1)
             {
-                string name = nameText.Text;
-                double price = Convert.ToDouble(priceText.Text);
-                long quantity = Convert.ToInt64(quantityText.Text);
-                int index = selectBox.SelectedIndex;
+                if(Double.TryParse(priceText.Text, out double price) && Int64.TryParse(quantityText.Text, out long quantity)) //Kollar så det går att konvertera fälten till long och double
+                {
+                    string name = nameText.Text;
+                    int index = selectBox.SelectedIndex;
 
-                Product pro = new Product { Namn = name, Pris = price, Kvantitet = quantity, Kategori = (Categories)index, Sålda = 0, Id = GenerateId.GenerateUniqueId(GenerateId.UsedProductIds)};
-                inventoryList.Add(pro);
+                    Product pro = new Product { Namn = name, Pris = price, Kvantitet = quantity, Kategori = (Categories)index, Sålda = 0, Id = GenerateId.GenerateUniqueId(GenerateId.UsedProductIds) };
+                    inventoryList.Add(pro);
 
-                UpdateJsonFile();
-                RefreshInventoryGrid();
-                newBtn_Click(sender, e);
+                    UpdateJsonFile();
+                    RefreshInventoryGrid();
+                    newBtn_Click(sender, e);
+
+                }    
+                else
+                {
+                    MessageBox.Show("Ange siffor i kvantitet och pris fälten");
+                }
             }
             else
             {
@@ -84,23 +78,24 @@ namespace Bunfiu_TEst.UserControls
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            string name = nameText.Text;
-            double price = Convert.ToDouble(priceText.Text);
-            long quantity = Convert.ToInt64(quantityText.Text);
-            int selected = selectBox.SelectedIndex;
-
-            if (inventoryGrid.CurrentCell != null)
+            if (Double.TryParse(priceText.Text, out double price) && Int64.TryParse(quantityText.Text, out long quantity)) //Kollar så det går att konvertera fälten till long och double
             {
-                int index = inventoryGrid.CurrentCell.RowIndex;
-                
-                inventoryList[index].Namn = name;
-                inventoryList[index].Pris = price;
-                inventoryList[index].Kvantitet = quantity;
-                inventoryList[index].Kategori = (Categories)selected;
-            }
+                string name = nameText.Text;
+                int selected = selectBox.SelectedIndex;
 
-            UpdateJsonFile();
-            RefreshInventoryGrid();
+                if (inventoryGrid.CurrentCell != null)
+                {
+                    int index = inventoryGrid.CurrentCell.RowIndex;
+
+                    inventoryList[index].Namn = name;
+                    inventoryList[index].Pris = price;
+                    inventoryList[index].Kvantitet = quantity;
+                    inventoryList[index].Kategori = (Categories)selected;
+                }
+
+                UpdateJsonFile();
+                RefreshInventoryGrid();
+            }
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
@@ -138,28 +133,25 @@ namespace Bunfiu_TEst.UserControls
             }          
         }
 
-         private void searchBox_TextChanged(object sender, EventArgs e)
+         private void searchBox_TextChanged(object sender, EventArgs e) //Om texten i sökfältet ändras körs sökmetoden
          {
-            List<Product> FilteredList = new List<Product>();
+            List<Product> FilteredList = new List<Product>(); //Lista med de produkter som går igenom sök
 
-             if(searchBox.Text == "")
+             if(searchBox.Text == "") //Om texten i sökfältet är tom sätts griden tillbaka till vanliga inventorylist
              {
                 inventoryGrid.DataSource = inventoryList;
              }
              else
              {
-                foreach (Product pro in inventoryList)
+                foreach (Product product in inventoryList)
                  {
-                     if(pro.Namn.Length >= searchBox.Text.Length)
-                     {
-                         if (pro.Namn.Substring(0, searchBox.Text.Length).ToLower() == searchBox.Text.ToLower())
-                         {
-                            FilteredList.Add(pro);
-                         }
-                     }
+                    if (product.Namn.ToLower().Contains(searchBox.Text.ToLower())) //Använder contains metod för att kolla om namnet på produkten innehåller söktexten
+                    {
+                            FilteredList.Add(product); //Isåfall läggs den till i den filtrerade listan
+                    }
                  }
                 inventoryGrid.DataSource = FilteredList;
-            }
+             }
          }
 
 

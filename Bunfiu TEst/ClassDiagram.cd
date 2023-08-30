@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Svarta pilar visar vilken klass de ärver ifrån&#xD;&#xA;&#xD;&#xA;Gula pilar visar att de har någon sorts koppling med varandra">
+    <Position X="6.182" Y="2.698" Height="1.219" Width="1.627" />
+  </Comment>
+  <Class Name="Inventory_App.UserControls.Customer">
+    <Position X="5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAEAAAAAAAAABgAAAAAAAAAAQAAAAQAAAAA=</HashCode>
+      <FileName>Classes\Customer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UC_Customers" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Inventory_App.Email">
+    <Position X="15" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Classes\Email.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Inventory_App.Classes.GenerateId">
+    <Position X="2.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAIAAAAAIAAAAAAAAAAACAAQiAAAAAgAAQ=</HashCode>
+      <FileName>Classes\GenerateId.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IdInterface" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory_App.JSONUtility">
+    <Position X="8.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAkAEAAAAAACAAAAAAAAAAAAAAAAAAAAABBAA=</HashCode>
+      <FileName>Classes\JSONUtility.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UC_Customers" />
+      <Property Name="UC_Inventory" />
+      <Property Name="UC_Orders" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Inventory_App.UserControls.Order">
+    <Position X="12.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAgAAAAAAAAIAAAAAAAAACAAAAAAAAAAAAEAE=</HashCode>
+      <FileName>Classes\Order.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UC_Orders" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Inventory_App.OrderBaseClass">
+    <Position X="11" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAgAAAAAAAAIAAAAAAAAAAAAEAAgAAAAAAAAA=</HashCode>
+      <FileName>Classes\OrderBaseClass.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IdInterface" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Inventory_App.UserControls.OrderItem">
+    <Position X="9" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAAgAAEEAAAAIAAIgAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\OrderItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UC_Orders" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Inventory_App.Classes.OrderSearch">
+    <Position X="14.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAACAAAAAAAAAAAAAAAAAAAAAAAAgAAIAAAA=</HashCode>
+      <FileName>Classes\OrderSearch.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UC_viewOrders" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Inventory_App.Product">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACgAAEACAABAAAAgAAAAAAEAACAAAAAgAAAAA=</HashCode>
+      <FileName>Classes\Product.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Categories" />
+      <Property Name="UC_Inventory" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Inventory_App.UserControls.UC_Customers">
+    <Position X="5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABBAAAAQSAAAIAAIACCJAACGAAAAAgEgFIAAAAABAA=</HashCode>
+      <FileName>UserControls\UC_Customers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bunfiu_TEst.UserControls.UC_Inventory">
+    <Position X="0.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BABBABAAQCABAIAAIACCLAASKEAAIAAEBEAAAAAARAE=</HashCode>
+      <FileName>UserControls\UC_Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bunfiu_TEst.UserControls.UC_Orders" Collapsed="true">
+    <Position X="11" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oCBAABCAASAAABCAAACKBAECAEAEAIAAgEQDAAIABAE=</HashCode>
+      <FileName>UserControls\UC_Orders.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UC_viewOrders" />
+      <Property Name="Email" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Inventory_App.UserControls3.UC_viewOrders">
+    <Position X="11" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAACAAQAAAAACAAAACAAAAAAAABEAAIIAgQAA=</HashCode>
+      <FileName>UserControls\UC_viewOrders.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bunfiu_TEst.UserControls.UC_Home">
+    <Position X="14.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEEAMAAGADCgABEAAACAAACCAIYCAAAAMAAAAIAQEAE=</HashCode>
+      <FileName>UserControls\UC_Home.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Inventory_App.Classes.IdInterface">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\IdInterface.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Inventory_App.Categories">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAQAAAAAAAAAgAAAAQAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Classes\Category.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

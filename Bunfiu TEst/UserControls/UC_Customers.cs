@@ -41,19 +41,19 @@ namespace Inventory_App.UserControls
             customerGrid.DataSource = customerList;
         }
 
-        private void newBtn_Click(object sender, EventArgs e)
+        private void newBtn_Click(object sender, EventArgs e) //Tömmer alla fält
         {
             nameText.Text = "";
-            phoneText.Text = "";
+            mailText.Text = "";
         }
 
-        private void saveBtn_Click(object sender, EventArgs e)
+        private void saveBtn_Click(object sender, EventArgs e) //Lägger till ny kund
         {
-            if (nameText.Text != "" && phoneText.Text != "")
+            if (nameText.Text != "" && mailText.Text != "")
             {
                 string name = nameText.Text;
-                string phone = phoneText.Text;
-                Customer customer = new Customer { Namn = name, Telefon = phone, Ordrar = 0, Id = GenerateId.GenerateUniqueId(GenerateId.UsedCustomerIds)};
+                string phone = mailText.Text;
+                Customer customer = new Customer { Namn = name, Mail = phone, Ordrar = 0, Id = GenerateId.GenerateUniqueId(GenerateId.UsedCustomerIds)};
                 customerList.Add(customer);
 
                 UpdateJsonFile();
@@ -66,24 +66,24 @@ namespace Inventory_App.UserControls
             }
         }
 
-        private void editBtn_Click(object sender, EventArgs e)
+        private void editBtn_Click(object sender, EventArgs e) //Ändra kund som redan finns tillagd
         {
             string name = nameText.Text;
-            string phone = phoneText.Text;
+            string phone = mailText.Text;
 
             if (customerGrid.CurrentCell != null)
             {
                 int index = customerGrid.CurrentCell.RowIndex;
                
                 customerList[index].Namn = name;
-                customerList[index].Telefon = phone;
+                customerList[index].Mail = phone;
             }
 
             UpdateJsonFile();
             RefreshCustomerGrid();
         }
 
-        private void deleteBtn_Click(object sender, EventArgs e)
+        private void deleteBtn_Click(object sender, EventArgs e) //Ta bort kund
         {
             if (customerGrid.CurrentCell != null)
             {
@@ -98,12 +98,12 @@ namespace Inventory_App.UserControls
             UpdateJsonFile();
             RefreshCustomerGrid();
         }  
-        private void customerGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void customerGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e) //Välj kund i datagriden
         {
             try
             {
                 nameText.Text = customerList[customerGrid.CurrentCell.RowIndex].Namn;
-                phoneText.Text = customerList[customerGrid.CurrentCell.RowIndex].Telefon;
+                mailText.Text = customerList[customerGrid.CurrentCell.RowIndex].Mail;
             }
             catch (Exception error)
             {

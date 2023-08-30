@@ -43,7 +43,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.customerGrid = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.insertOrder = new Guna.UI2.WinForms.Guna2Button();
+            this.addOrder = new Guna.UI2.WinForms.Guna2Button();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2GradientPanel2 = new Guna.UI2.WinForms.Guna2GradientPanel();
@@ -143,25 +143,25 @@
             this.customerGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.customerGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customerGrid_CellClick);
             // 
-            // insertOrder
+            // addOrder
             // 
-            this.insertOrder.Animated = true;
-            this.insertOrder.AutoRoundedCorners = true;
-            this.insertOrder.BackColor = System.Drawing.SystemColors.Control;
-            this.insertOrder.BorderRadius = 21;
-            this.insertOrder.FillColor = System.Drawing.Color.LimeGreen;
-            this.insertOrder.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.insertOrder.ForeColor = System.Drawing.Color.Black;
-            this.insertOrder.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.insertOrder.Image = ((System.Drawing.Image)(resources.GetObject("insertOrder.Image")));
-            this.insertOrder.ImageSize = new System.Drawing.Size(25, 25);
-            this.insertOrder.Location = new System.Drawing.Point(14, 504);
-            this.insertOrder.Name = "insertOrder";
-            this.insertOrder.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.insertOrder.Size = new System.Drawing.Size(242, 45);
-            this.insertOrder.TabIndex = 6;
-            this.insertOrder.Text = "Godkänn order";
-            this.insertOrder.Click += new System.EventHandler(this.newBtn_Click);
+            this.addOrder.Animated = true;
+            this.addOrder.AutoRoundedCorners = true;
+            this.addOrder.BackColor = System.Drawing.SystemColors.Control;
+            this.addOrder.BorderRadius = 21;
+            this.addOrder.FillColor = System.Drawing.Color.LimeGreen;
+            this.addOrder.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addOrder.ForeColor = System.Drawing.Color.Black;
+            this.addOrder.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.addOrder.Image = ((System.Drawing.Image)(resources.GetObject("addOrder.Image")));
+            this.addOrder.ImageSize = new System.Drawing.Size(25, 25);
+            this.addOrder.Location = new System.Drawing.Point(14, 504);
+            this.addOrder.Name = "addOrder";
+            this.addOrder.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.addOrder.Size = new System.Drawing.Size(242, 45);
+            this.addOrder.TabIndex = 6;
+            this.addOrder.Text = "Godkänn order";
+            this.addOrder.Click += new System.EventHandler(this.addOrder_Click);
             // 
             // guna2HtmlLabel1
             // 
@@ -497,7 +497,7 @@
             this.Controls.Add(this.guna2HtmlLabel2);
             this.Controls.Add(this.guna2GradientPanel2);
             this.Controls.Add(this.guna2HtmlLabel1);
-            this.Controls.Add(this.insertOrder);
+            this.Controls.Add(this.addOrder);
             this.Controls.Add(this.guna2GradientPanel1);
             this.Name = "UC_Orders";
             this.Size = new System.Drawing.Size(942, 560);
@@ -516,7 +516,7 @@
 
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
         private Guna.UI2.WinForms.Guna2DataGridView customerGrid;
-        private Guna.UI2.WinForms.Guna2Button insertOrder;
+        private Guna.UI2.WinForms.Guna2Button addOrder;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel2;

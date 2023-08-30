@@ -15,15 +15,19 @@ namespace Bunfiu_TEst.UserControls
 {
     public partial class UC_Home : UserControl
     {
-
-        private int totalSoldProducts = 0;
         public UC_Home()
         {
             InitializeComponent();
-            UC_Orders temp = new UC_Orders();
             UC_Orders.LoadOrderData(); //Hämtar order datan från json
             LoadProductChart();
-            LoadTopProducts();    
+            LoadTopProducts();
+
+            orderLabel.Text = UC_Orders.OrdersList.Count.ToString(); //Alla texter i översikten
+            revenueLabel.Text = getTotalRevenue().ToString() + "kr";
+            profitLabel.Text = getTotalProfit().ToString() + "kr";
+            productsLabel.Text = UC_Inventory.inventoryList.Count.ToString();
+            customerLabel.Text = UC_Customers.customerList.Count.ToString();
+            soldProducts.Text = getTotalsoldProducts().ToString();
         }
 
         private void LoadProductChart() //Stapel diagramet
@@ -56,17 +60,6 @@ namespace Bunfiu_TEst.UserControls
             TopProduct.Series.Add(series);
             TopProduct.Series["Mest sålda produkter"].Label = "#VALX: #VALY";
         }
-
-        private void UC_Home_Load(object sender, EventArgs e)
-        {   
-            orderLabel.Text = UC_Orders.OrdersList.Count.ToString();
-            revenueLabel.Text = getTotalRevenue().ToString() + "kr";
-            profitLabel.Text = getTotalProfit().ToString() + "kr";
-            productsLabel.Text = UC_Inventory.inventoryList.Count.ToString();
-            customerLabel.Text = UC_Customers.customerList.Count.ToString();
-            soldProducts.Text = getTotalsoldProducts().ToString();
-        }
-
         private double getTotalRevenue()
         {
             double totalRevenue = 0;
@@ -84,16 +77,12 @@ namespace Bunfiu_TEst.UserControls
 
         private int getTotalsoldProducts()
         {
-            foreach(Order order in UC_Orders.OrdersList)
+            int totalSoldProducts = 0;
+            foreach (Order order in UC_Orders.OrdersList)
             {
                 totalSoldProducts += order.Produkter;
             }
             return totalSoldProducts;
         }
-
-      
-        
-
-        
     }
 }

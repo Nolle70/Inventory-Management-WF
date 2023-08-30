@@ -74,26 +74,9 @@ namespace Bunfiu_TEst
             homeBtn.Checked = true;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         private void kryssBtn_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void maximizeBtn_Click(object sender, EventArgs e)
-        {
-            if(WindowState == FormWindowState.Normal)
-            {
-                WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                WindowState = FormWindowState.Normal;
-            }
         }
 
         private void minimizeBtn_Click(object sender, EventArgs e)

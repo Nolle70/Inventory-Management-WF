@@ -17,9 +17,8 @@ namespace Bunfiu_TEst.UserControls
 {
     public partial class UC_Orders : UserControl
     {
-        private static List<OrderItem> OneOrder = new List<OrderItem>();
-
-        public static List<Order> OrdersList = new List<Order>();
+        private static List<OrderItem> OneOrder = new List<OrderItem>(); //Lista med produkterna i ordern som pågar just nu
+        public static List<Order> OrdersList = new List<Order>(); //Lista med alla ordrar
 
         private static double totalOrdersPrice = 0;
         private static int totalProducts = 0;
@@ -30,6 +29,22 @@ namespace Bunfiu_TEst.UserControls
             RefreshGrids();
             datePicker.Value = DateTime.Today;
             orderGrid.Enabled = false;
+        }
+
+        public Inventory_App.UserControls3.UC_viewOrders UC_viewOrders
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Email Email
+        {
+            get => default;
+            set
+            {
+            }
         }
 
         public static void LoadOrderData()
@@ -52,7 +67,7 @@ namespace Bunfiu_TEst.UserControls
             Customer.LoadOrders();
             customerGrid.DataSource = UC_Customers.customerList;
 
-            if (orderGrid.Columns.Count > 4) //Tar bort produkt kolumnen
+            if (orderGrid.Columns.Count > 4) //Tar bort produkt kolumnen då den inte behövs
             {
                 foreach(DataGridViewColumn column in orderGrid.Columns)
                 {
@@ -64,35 +79,54 @@ namespace Bunfiu_TEst.UserControls
                 }
             }
         }
-
         private void addItem_Click(object sender, EventArgs e)
         {
-            if(int.TryParse(quantityText.Text, out int quantity))
+            if(int.TryParse(quantityText.Text, out int quantity)) //Går att konvertera till int
             {
-                Product product = UC_Inventory.inventoryList[inventoryGrid.CurrentCell.RowIndex]; //Hämtar vald produkt
-                if (product.InStock())
+                Product product = UC_Inventory.inventoryList[inventoryGrid.CurrentCell.RowIndex]; //Hämtar vald produkt i griden
+                if (product.InStock(quantity)) //Kollar om det finns tillräckligt av produkten
                 {
-                        if (ExistingItem(product, out OrderItem item)) //Om produkten redan finns uppdateras pris samt kvantiteten
+                    bool itemExists = true;
+                        if (ExistingItem(product, out OrderItem item)) //Om produkten redan finns tillagd uppdateras den befintliga produkten i ordern
                         {
-                            item.AddQuantity(quantity);
-                            item.calculateTotalPrice();
+                            if (quantity < 0 && Math.Abs(quantity) > item.Kvantitet) //Kollar om det finns tillräckligt med produkter för att ta bort alla
+                            {
+                                MessageBox.Show("Du kan inte ta bort fler produkter än du lagt till");
+                                itemExists = false;
+                            }
+                            else
+                            {
+                                item.AddQuantity(quantity);
+                                item.calculateTotalPrice();
+                                if (!item.CheckQuantity()) //Om produktens kvantitet är noll tas den bort från ordern
+                                {
+                                    OneOrder.Remove(item);
+                                }
+                            }
                         }
-                        else //Om produkten inte är tillagd läggs den till här
+                        else //Om produkten inte är tillagd än läggs den till här
                         {
-                            OrderItem orderitem = new OrderItem { Namn = product.Namn, Product = product, Kvantitet = quantity, Pris = product.Pris, Summa = quantity * product.Pris, Id = product.Id };
-                            OneOrder.Add(orderitem);
+                           if(quantity > 0) //För att inte kunna lägga till negativt antal produkter
+                            {
+                                OrderItem orderitem = new OrderItem { Namn = product.Namn, Product = product, Kvantitet = quantity, Pris = product.Pris, Summa = quantity * product.Pris, Id = product.Id };
+                                OneOrder.Add(orderitem);
+                            }
+                           else
+                            {
+                                itemExists = false;
+                            }
                         }
-
-                        totalOrdersPrice += product.Pris * Convert.ToDouble(quantity);
-                        totalProducts += quantity;
-                        product.Kvantitet -= quantity;
-                        product.Sålda += quantity;
-                    
-                    }
-                
+                        if(itemExists) //Uppdateras endast om det man vill lägga till/ta bort är möjligt
+                        {
+                            totalOrdersPrice += product.Pris * Convert.ToDouble(quantity);
+                            product.Sålda += quantity;
+                            totalProducts += quantity;
+                            product.Kvantitet -= quantity;
+                        }
+                }    
                 else
                 {
-                    MessageBox.Show("Det finns inte " + quantity + " av den produkten");
+                    MessageBox.Show("Det finns inte " + quantity + " av den produkten i lager");
                 }
 
                 UC_Inventory.UpdateJsonFile();
@@ -105,19 +139,19 @@ namespace Bunfiu_TEst.UserControls
            
         }
 
-        private void newBtn_Click(object sender, EventArgs e) //Godkänn order knapp
+        private void addOrder_Click(object sender, EventArgs e)
         {
             if(OneOrder.Count > 0)
             {
                
                 DateTime date = datePicker.Value;
                 Customer customer = UC_Customers.customerList[customerGrid.CurrentCell.RowIndex];
-                customer.AddOrder();
+                customer.AddOrder(); //Uppdaterar order variablen för kunden
                         
                 Order order = new Order { Id = GenerateId.GenerateUniqueId(GenerateId.UsedOrderIds), Customer = customer, Datum = date, OrderList = OneOrder, Summa = totalOrdersPrice, Produkter = totalProducts };
                 OrdersList.Add(order);
-                            
-                UC_Inventory.CalculateSoldItems();
+
+                Email.SendEmail(order, customer);
 
                 //Updaterar alla json filer och refreshar alla grids
                 UpdateJsonFile();
@@ -145,19 +179,20 @@ namespace Bunfiu_TEst.UserControls
             idText.Text = UC_Customers.customerList[customerGrid.CurrentCell.RowIndex].Id.ToString();
         }
 
-        private bool ExistingItem(Product product, out OrderItem itm)
+        private bool ExistingItem(Product product, out OrderItem searchItem) //Kollar om produkten redan finns tillagd i ordern
         {
             foreach(OrderItem item in OneOrder)
             {
-                if(item.Product.Id == product.Id)
+                if(item.Product.Id == product.Id) //Om den finns använder jag out för att skicka tillbaka orderitem som redan fanns
                 {
-                    itm = item;
+                    searchItem = item;
                     return true;
                 }
             }
-            itm = null;
+            searchItem = null;
             return false;
         }
 
+        
     }
 }

@@ -52,9 +52,9 @@ namespace Inventory_App
 
         }
 
-        public bool InStock()
+        public bool InStock(int quantity)
         {
-            if(Kvantitet > 0)
+            if(Kvantitet > quantity)
             {
                 return true;
             }
@@ -64,6 +64,20 @@ namespace Inventory_App
             }
         }
 
+        public Categories Categories
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
+        public Bunfiu_TEst.UserControls.UC_Inventory UC_Inventory
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

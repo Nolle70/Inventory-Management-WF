@@ -13,23 +13,15 @@ namespace Inventory_App.UserControls
 
         public double Pris { get; set; }
 
-        public int kvantitet;
+        public int Kvantitet { get; set; }
         public Product Product { get; set; }
-        public int Kvantitet //Ser till att kvantiteten inte sätts till negativt tal
+
+        public Bunfiu_TEst.UserControls.UC_Orders UC_Orders
         {
-            get { return kvantitet; }
+            get => default;
             set
             {
-                if (value >= 0)
-                {
-                    kvantitet = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Kvantiten måste vara positivt");
-                }
             }
-
         }
 
         public override double calculateTotalPrice()
@@ -43,9 +35,18 @@ namespace Inventory_App.UserControls
             return Kvantitet;
         }
 
-        public void AddQuantity(int quantity)
+        public void AddQuantity(int quantity) //Ifall produkt av samma typ läggs till uppdateras kvantiten
         {
             Kvantitet += quantity;
+        }
+
+        public bool CheckQuantity() //Kollar om produkten borde finnas kvar i ordern
+        {
+            if(Kvantitet <= 0)
+            {
+                return false;
+            }
+            return true;
         }
 
 

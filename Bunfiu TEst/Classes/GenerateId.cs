@@ -13,6 +13,14 @@ namespace Inventory_App.Classes
     {
         public int Id { get; set; }
 
+        public IdInterface IdInterface
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public static HashSet<int> UsedProductIds = new HashSet<int>();
         public static HashSet<int> UsedCustomerIds = new HashSet<int>();
         public static HashSet<int> UsedOrderIds = new HashSet<int>();
@@ -41,34 +49,5 @@ namespace Inventory_App.Classes
             }
             
         }
-
-        /*
-        public static void LoadProductIds(List<Product> productList)
-        {
-            UsedProductIds.Clear();
-            foreach (Product product in productList)
-            {
-                UsedProductIds.Add(product.Id);
-            }
-        }
-
-        public static void LoadCustomerIds(List<Customer> customerList)
-        {
-            UsedCustomerIds.Clear();
-            foreach (Customer customer in customerList)
-            {
-                UsedCustomerIds.Add(customer.Id);
-            }
-        }
-        public static void LoadOrderIds(List<Order> orderList)
-        {
-            UsedOrderIds.Clear();
-            foreach (Order order in orderList)
-            {
-                UsedProductIds.Add(order.Id);
-            }
-        }
-        */
-
     }
 }

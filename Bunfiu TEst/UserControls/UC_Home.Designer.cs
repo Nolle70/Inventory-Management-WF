@@ -358,7 +358,6 @@
             this.Controls.Add(this.label1);
             this.Name = "UC_Home";
             this.Size = new System.Drawing.Size(942, 560);
-            this.Load += new System.EventHandler(this.UC_Home_Load);
             ((System.ComponentModel.ISupportInitialize)(this.TopProduct)).EndInit();
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();

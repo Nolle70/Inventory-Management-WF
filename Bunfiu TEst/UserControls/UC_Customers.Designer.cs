@@ -40,7 +40,7 @@
             this.editBtn = new Guna.UI2.WinForms.Guna2Button();
             this.deleteBtn = new Guna.UI2.WinForms.Guna2Button();
             this.nameText = new Guna.UI2.WinForms.Guna2TextBox();
-            this.phoneText = new Guna.UI2.WinForms.Guna2TextBox();
+            this.mailText = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerGrid)).BeginInit();
             this.SuspendLayout();
@@ -237,47 +237,47 @@
             this.nameText.TabIndex = 10;
             this.nameText.TextOffset = new System.Drawing.Point(5, 0);
             // 
-            // phoneText
+            // mailText
             // 
-            this.phoneText.BackColor = System.Drawing.Color.Transparent;
-            this.phoneText.BorderColor = System.Drawing.Color.Yellow;
-            this.phoneText.BorderRadius = 20;
-            this.phoneText.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
-            this.phoneText.BorderThickness = 3;
-            this.phoneText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.phoneText.DefaultText = "";
-            this.phoneText.DisabledState.BorderColor = System.Drawing.Color.White;
-            this.phoneText.DisabledState.FillColor = System.Drawing.Color.White;
-            this.phoneText.DisabledState.ForeColor = System.Drawing.Color.Red;
-            this.phoneText.DisabledState.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.phoneText.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.phoneText.FocusedState.BorderColor = System.Drawing.Color.DarkKhaki;
-            this.phoneText.FocusedState.PlaceholderForeColor = System.Drawing.Color.Black;
-            this.phoneText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneText.ForeColor = System.Drawing.Color.Black;
-            this.phoneText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.phoneText.HoverState.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.phoneText.IconRightOffset = new System.Drawing.Point(5, 0);
-            this.phoneText.IconRightSize = new System.Drawing.Size(30, 30);
-            this.phoneText.Location = new System.Drawing.Point(12, 107);
-            this.phoneText.Margin = new System.Windows.Forms.Padding(5);
-            this.phoneText.Name = "phoneText";
-            this.phoneText.PasswordChar = '\0';
-            this.phoneText.PlaceholderForeColor = System.Drawing.Color.Orange;
-            this.phoneText.PlaceholderText = "Telefon...";
-            this.phoneText.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.phoneText.SelectedText = "";
-            this.phoneText.ShadowDecoration.Depth = 15;
-            this.phoneText.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.phoneText.Size = new System.Drawing.Size(270, 45);
-            this.phoneText.TabIndex = 11;
-            this.phoneText.TextOffset = new System.Drawing.Point(5, 0);
+            this.mailText.BackColor = System.Drawing.Color.Transparent;
+            this.mailText.BorderColor = System.Drawing.Color.Yellow;
+            this.mailText.BorderRadius = 20;
+            this.mailText.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.mailText.BorderThickness = 3;
+            this.mailText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.mailText.DefaultText = "";
+            this.mailText.DisabledState.BorderColor = System.Drawing.Color.White;
+            this.mailText.DisabledState.FillColor = System.Drawing.Color.White;
+            this.mailText.DisabledState.ForeColor = System.Drawing.Color.Red;
+            this.mailText.DisabledState.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.mailText.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.mailText.FocusedState.BorderColor = System.Drawing.Color.DarkKhaki;
+            this.mailText.FocusedState.PlaceholderForeColor = System.Drawing.Color.Black;
+            this.mailText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mailText.ForeColor = System.Drawing.Color.Black;
+            this.mailText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.mailText.HoverState.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.mailText.IconRightOffset = new System.Drawing.Point(5, 0);
+            this.mailText.IconRightSize = new System.Drawing.Size(30, 30);
+            this.mailText.Location = new System.Drawing.Point(12, 107);
+            this.mailText.Margin = new System.Windows.Forms.Padding(5);
+            this.mailText.Name = "mailText";
+            this.mailText.PasswordChar = '\0';
+            this.mailText.PlaceholderForeColor = System.Drawing.Color.Orange;
+            this.mailText.PlaceholderText = "Mail...";
+            this.mailText.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.mailText.SelectedText = "";
+            this.mailText.ShadowDecoration.Depth = 15;
+            this.mailText.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(5, 5, 0, 0);
+            this.mailText.Size = new System.Drawing.Size(270, 45);
+            this.mailText.TabIndex = 11;
+            this.mailText.TextOffset = new System.Drawing.Point(5, 0);
             // 
             // UC_Customers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.phoneText);
+            this.Controls.Add(this.mailText);
             this.Controls.Add(this.nameText);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.editBtn);
@@ -301,6 +301,6 @@
         private Guna.UI2.WinForms.Guna2Button editBtn;
         private Guna.UI2.WinForms.Guna2Button deleteBtn;
         private Guna.UI2.WinForms.Guna2TextBox nameText;
-        private Guna.UI2.WinForms.Guna2TextBox phoneText;
+        private Guna.UI2.WinForms.Guna2TextBox mailText;
     }
 }

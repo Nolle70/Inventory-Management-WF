@@ -29,7 +29,7 @@ namespace Inventory_App.UserControls3
                orderTable.Columns.Add("Datum", typeof(DateTime));
             }
             LoadOrdersData();
-            Classes.OrderManager.LoadOrdersId();
+            Classes.OrderSearch.LoadOrdersId();
         }
 
         private void LoadOrdersData()
@@ -46,7 +46,7 @@ namespace Inventory_App.UserControls3
         {
             if(searchBox.Text == "")
             {
-                LoadOrdersData();
+                LoadOrdersData(); //Om söktexten är tom visas alla ordrar igen
             }
         }
 
@@ -54,13 +54,13 @@ namespace Inventory_App.UserControls3
         {
                 if (int.TryParse(searchBox.Text, out int searchText))
                 {
-                    Order order = Classes.OrderManager.FindOrderByProductId(searchText);
-                    if (order != null)
+                    Order order = Classes.OrderSearch.FindOrderByProductId(searchText); //Söker efter ordern
+                    if (order != null) //Inte lika med null betyder att den hittades och isåfall visas bara den
                     {
                         orderTable.Clear();
                         orderTable.Rows.Add(order.Id, order.Customer.Namn, order.Summa, order.Produkter, order.Datum);
                     } 
-                    else
+                    else //Ordern hittades inte
                     {
                         MessageBox.Show("Det finns ingen order med order id: " + searchText);
                     }

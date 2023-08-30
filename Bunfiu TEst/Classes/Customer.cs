@@ -10,9 +10,18 @@ namespace Inventory_App.UserControls
     public class Customer : Classes.GenerateId
     {
         public string Namn { get; set; }
-        public string Telefon { get; set; }
+        public string Mail { get; set; }
 
         public int Ordrar { get; set; }
+
+        public UC_Customers UC_Customers
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public void AddOrder()
         {
             Ordrar += 1;

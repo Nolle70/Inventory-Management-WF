@@ -15,7 +15,15 @@ namespace Inventory_App.UserControls
         public List<OrderItem> OrderList { get; set; } = new List<OrderItem>();
         public int Produkter { get; set; }
 
-        public override double calculateTotalPrice()
+        public Bunfiu_TEst.UserControls.UC_Orders UC_Orders
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public override double calculateTotalPrice() //Sammanlagda priset för ordern
         {
             Summa = 0;
             foreach (OrderItem item in OrderList)
@@ -26,7 +34,7 @@ namespace Inventory_App.UserControls
             return Summa;
         }
 
-        public override int calculateTotalProducts()
+        public override int calculateTotalProducts() //Antal produkter i ordern
         {  
            Produkter = 0;
            foreach (OrderItem item in OrderList)

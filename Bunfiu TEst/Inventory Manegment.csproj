@@ -90,8 +90,9 @@
     <Compile Include="Classes\Order.cs" />
     <Compile Include="Classes\OrderItem.cs" />
     <Compile Include="Classes\Customer.cs" />
-    <Compile Include="Classes\OrderManager.cs" />
+    <Compile Include="Classes\OrderSearch.cs" />
     <Compile Include="Classes\Product.cs" />
+    <Compile Include="Classes\Email.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +159,7 @@
     <EmbeddedResource Include="UserControls\UC_viewOrders.resx">
       <DependentUpon>UC_viewOrders.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram.cd" />
     <None Include="Json\customers.json" />
     <None Include="Json\orders.json" />
     <None Include="packages.config" />

@@ -32,7 +32,6 @@
             this.topPanel = new System.Windows.Forms.Panel();
             this.controlBox = new System.Windows.Forms.Panel();
             this.minimizeBtn = new Guna.UI2.WinForms.Guna2Button();
-            this.maximizeBtn = new Guna.UI2.WinForms.Guna2Button();
             this.kryssBtn = new Guna.UI2.WinForms.Guna2Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -65,7 +64,6 @@
             // controlBox
             // 
             this.controlBox.Controls.Add(this.minimizeBtn);
-            this.controlBox.Controls.Add(this.maximizeBtn);
             this.controlBox.Controls.Add(this.kryssBtn);
             this.controlBox.Dock = System.Windows.Forms.DockStyle.Right;
             this.controlBox.Location = new System.Drawing.Point(987, 0);
@@ -82,26 +80,11 @@
             this.minimizeBtn.ForeColor = System.Drawing.Color.White;
             this.minimizeBtn.Image = ((System.Drawing.Image)(resources.GetObject("minimizeBtn.Image")));
             this.minimizeBtn.ImageSize = new System.Drawing.Size(28, 28);
-            this.minimizeBtn.Location = new System.Drawing.Point(19, 21);
+            this.minimizeBtn.Location = new System.Drawing.Point(52, 20);
             this.minimizeBtn.Name = "minimizeBtn";
             this.minimizeBtn.Size = new System.Drawing.Size(27, 27);
             this.minimizeBtn.TabIndex = 2;
             this.minimizeBtn.Click += new System.EventHandler(this.minimizeBtn_Click);
-            // 
-            // maximizeBtn
-            // 
-            this.maximizeBtn.AutoRoundedCorners = true;
-            this.maximizeBtn.BorderRadius = 13;
-            this.maximizeBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.maximizeBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.maximizeBtn.ForeColor = System.Drawing.Color.White;
-            this.maximizeBtn.Image = ((System.Drawing.Image)(resources.GetObject("maximizeBtn.Image")));
-            this.maximizeBtn.ImageSize = new System.Drawing.Size(26, 26);
-            this.maximizeBtn.Location = new System.Drawing.Point(59, 21);
-            this.maximizeBtn.Name = "maximizeBtn";
-            this.maximizeBtn.Size = new System.Drawing.Size(28, 28);
-            this.maximizeBtn.TabIndex = 1;
-            this.maximizeBtn.Click += new System.EventHandler(this.maximizeBtn_Click);
             // 
             // kryssBtn
             // 
@@ -281,7 +264,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.topPanel.ResumeLayout(false);
             this.topPanel.PerformLayout();
             this.controlBox.ResumeLayout(false);
@@ -305,7 +287,6 @@
         private System.Windows.Forms.Panel panelContainer;
         private System.Windows.Forms.Panel controlBox;
         private Guna.UI2.WinForms.Guna2Button minimizeBtn;
-        private Guna.UI2.WinForms.Guna2Button maximizeBtn;
         private Guna.UI2.WinForms.Guna2Button kryssBtn;
     }
 }

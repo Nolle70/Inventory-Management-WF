@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Inventory_App
 {
-    public enum Categories
+    public enum Categories //Kategorier för produkterna
     {
         Elektronik,
         Reservdelar,
