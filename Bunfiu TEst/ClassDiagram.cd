@@ -6,12 +6,9 @@
   <Class Name="Inventory_App.UserControls.Customer">
     <Position X="5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAEAAAAAAAAABgAAAAAAAAAAQAAAAQAAAAA=</HashCode>
+      <HashCode>AAAAAAAgAAAAAAAAAAAABgAAAAAAAAAAQAAAAQAAAAA=</HashCode>
       <FileName>Classes\Customer.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="UC_Customers" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Inventory_App.Email">
     <Position X="15" Y="6.75" Width="1.75" />
@@ -23,25 +20,17 @@
   <Class Name="Inventory_App.Classes.GenerateId">
     <Position X="2.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAIAAAAAIAAAAAAAAAAACAAQiAAAAAgAAQ=</HashCode>
+      <HashCode>AAACAAAAAAAIAAAAAIAAAAAAAAAAACAAQCAAAAAgAAQ=</HashCode>
       <FileName>Classes\GenerateId.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="IdInterface" />
-    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Inventory_App.JSONUtility">
     <Position X="8.25" Y="10" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAkAEAAAAAACAAAAAAAAAAAAAAAAAAAAABBAA=</HashCode>
+      <HashCode>AAAAAAAAEAAAAAAAACAAAAAAAAAAAAAAAAAAAAABBAA=</HashCode>
       <FileName>Classes\JSONUtility.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="UC_Customers" />
-      <Property Name="UC_Inventory" />
-      <Property Name="UC_Orders" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Inventory_App.UserControls.Order">
     <Position X="12.75" Y="3.75" Width="1.5" />
@@ -49,51 +38,35 @@
       <HashCode>AAEAAAAAgAAAAAAAAIAAAAAAAAACAAAAAAAAAAAAEAE=</HashCode>
       <FileName>Classes\Order.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="UC_Orders" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Inventory_App.OrderBaseClass">
     <Position X="11" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAgAAAAAAAAIAAAAAAAAAAAAEAAgAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAgAAAAAAAAIAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
       <FileName>Classes\OrderBaseClass.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="IdInterface" />
-    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Inventory_App.UserControls.OrderItem">
     <Position X="9" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAECAAAAgAAEEAAAAIAAIgAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAgAAEEAAAAIAAIgAAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Classes\OrderItem.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="UC_Orders" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Inventory_App.Classes.OrderSearch">
     <Position X="14.75" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQAAAAACAAAAAAAAAAAAAAAAAAAAAAAAgAAIAAAA=</HashCode>
+      <HashCode>AAAAQAAAAACAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Classes\OrderSearch.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="UC_viewOrders" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Inventory_App.Product">
     <Position X="0.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACgAAEACAABAAAAgAAAAAAEAACAAAAAgAAAAA=</HashCode>
+      <HashCode>AAAAAAACAAAEACAABAAAAgAAAAAAAAACAAAAAgAAAAA=</HashCode>
       <FileName>Classes\Product.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Categories" />
-      <Property Name="UC_Inventory" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Inventory_App.UserControls.UC_Customers">
     <Position X="5" Y="9" Width="1.5" />
@@ -112,13 +85,9 @@
   <Class Name="Bunfiu_TEst.UserControls.UC_Orders" Collapsed="true">
     <Position X="11" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>oCBAABCAASAAABCAAACKBAECAEAEAIAAgEQDAAIABAE=</HashCode>
+      <HashCode>oCBAABCAASAAABCAAACKBAECAEAEAIAAgEQDAAAABAE=</HashCode>
       <FileName>UserControls\UC_Orders.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="UC_viewOrders" />
-      <Property Name="Email" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Inventory_App.UserControls3.UC_viewOrders">
     <Position X="11" Y="9.75" Width="1.5" />

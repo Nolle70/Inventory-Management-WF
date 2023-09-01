@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Inventory_App;
 
 namespace Inventory_App.UserControls
 {
@@ -13,14 +12,6 @@ namespace Inventory_App.UserControls
         public string Mail { get; set; }
 
         public int Ordrar { get; set; }
-
-        public UC_Customers UC_Customers
-        {
-            get => default;
-            set
-            {
-            }
-        }
 
         public void AddOrder()
         {

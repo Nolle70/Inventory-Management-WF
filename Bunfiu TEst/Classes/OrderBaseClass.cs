@@ -10,15 +10,6 @@ namespace Inventory_App
     {
         public int Id { get; set; }
         public double Summa { get; set; }
-
-        public Classes.IdInterface IdInterface
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         public abstract double calculateTotalPrice();
 
         public abstract int calculateTotalProducts();

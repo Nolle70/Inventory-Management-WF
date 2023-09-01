@@ -1,16 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_App.UserControls;
 using Inventory_App;
-using System.IO;
-using System.Text.Json;
 using Inventory_App.Classes;
 
 namespace Bunfiu_TEst.UserControls
@@ -29,22 +21,6 @@ namespace Bunfiu_TEst.UserControls
             RefreshGrids();
             datePicker.Value = DateTime.Today;
             orderGrid.Enabled = false;
-        }
-
-        public Inventory_App.UserControls3.UC_viewOrders UC_viewOrders
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Email Email
-        {
-            get => default;
-            set
-            {
-            }
         }
 
         public static void LoadOrderData()

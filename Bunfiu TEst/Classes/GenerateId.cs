@@ -1,25 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bunfiu_TEst.UserControls;
-using Inventory_App.UserControls;
-using System.Text.Json.Serialization;
 
 namespace Inventory_App.Classes
 {
     public class GenerateId : IdInterface
     {
         public int Id { get; set; }
-
-        public IdInterface IdInterface
-        {
-            get => default;
-            set
-            {
-            }
-        }
 
         public static HashSet<int> UsedProductIds = new HashSet<int>();
         public static HashSet<int> UsedCustomerIds = new HashSet<int>();
@@ -47,7 +33,6 @@ namespace Inventory_App.Classes
             {
                 UsedIds.Add(item.Id);
             }
-            
         }
     }
 }

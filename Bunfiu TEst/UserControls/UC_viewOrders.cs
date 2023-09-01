@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_App.UserControls;
-using System.IO;
-using System.Text.Json;
 using Bunfiu_TEst.UserControls;
 
 namespace Inventory_App.UserControls3
@@ -55,7 +47,7 @@ namespace Inventory_App.UserControls3
                 if (int.TryParse(searchBox.Text, out int searchText))
                 {
                     Order order = Classes.OrderSearch.FindOrderByProductId(searchText); //Söker efter ordern
-                    if (order != null) //Inte lika med null betyder att den hittades och isåfall visas bara den
+                    if (order != null) //Inte lika med null betyder att den hittades och isåfall visas bara den ordern
                     {
                         orderTable.Clear();
                         orderTable.Rows.Add(order.Id, order.Customer.Namn, order.Summa, order.Produkter, order.Datum);

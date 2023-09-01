@@ -1,16 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_App;
-using Inventory_App.UserControls;
 using Inventory_App.Classes;
 
 namespace Bunfiu_TEst.UserControls

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.Json;
 
 namespace Inventory_App
 {
@@ -61,22 +56,6 @@ namespace Inventory_App
             else
             {
                 return false;
-            }
-        }
-
-        public Categories Categories
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Bunfiu_TEst.UserControls.UC_Inventory UC_Inventory
-        {
-            get => default;
-            set
-            {
             }
         }
     }
